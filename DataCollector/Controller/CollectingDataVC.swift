@@ -243,7 +243,7 @@ class CollectingDataVC: UIViewController, ClassSettingsTableVCDelegate  {
     @IBAction func StartButtonpressed(_ sender: Any) {
         status = .recording
         
-        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.001, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
         startTime = NSDate.timeIntervalSinceReferenceDate
         
         // Start session recording
@@ -325,13 +325,16 @@ class CollectingDataVC: UIViewController, ClassSettingsTableVCDelegate  {
         let seconds = UInt8(elapsedTime)
         elapsedTime -= TimeInterval(seconds)
         
+        //find out the fraction of milliseconds to be displayed.
+        let fraction = UInt16(elapsedTime * 1000)
         
         //add the leading zero for minutes, seconds and millseconds and store them as string constants
         let strMinutes = String(format: "%02d", minutes)
         let strSeconds = String(format: "%02d", seconds)
+        let strFraction = String(format: "%03d", fraction)
         
         //concatenate minuts, seconds and milliseconds as assign it to the UILabel
-        recordTimeLabel.text = "\(strMinutes):\(strSeconds)"
+        recordTimeLabel.text = "\(strMinutes):\(strSeconds):\(strFraction)"
         recordTime = "\(strMinutes):\(strSeconds)"
     }
     
@@ -349,7 +352,7 @@ class CollectingDataVC: UIViewController, ClassSettingsTableVCDelegate  {
         settingsTableVC?.recordNumberLabel.text = "Next record number:"
         recordStatusImage.isHidden = true
         recordTimeLabel.isHidden = false
-        recordTimeLabel.text = "00:00"
+        recordTimeLabel.text = "00:00:000"
         startButton.isHidden = false
         stopButton.isHidden = false
         startButton.isEnabled = true
