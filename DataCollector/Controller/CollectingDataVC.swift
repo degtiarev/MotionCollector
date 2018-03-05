@@ -107,11 +107,11 @@ class CollectingDataVC: UIViewController, ClassSettingsTableVCDelegate  {
             self.motion.startMagnetometerUpdates()
             
             // Configure a timer to fetch the data.
-            self.timer = Timer(fire: Date(), interval: (1.0/Double (currentFrequency)),
-                               repeats: true, block: { (timer) in
+            self.timer1 = Timer(fire: Date(), interval: (1.0/Double (currentFrequency)),
+                               repeats: true, block: { (timer1) in
                                 // Get the motion data.
                                 if let dataAcc = self.motion.accelerometerData, let dataMag = self.motion.magnetometerData, let dataGyro = self.motion.gyroData {
-                                    let currenTime = self.returnCurrentTime()
+                                    //let currenTime = self.returnCurrentTime()
                                     
                                     let GyroX = dataGyro.rotationRate.x
                                     let GyroY = dataGyro.rotationRate.y
@@ -126,9 +126,9 @@ class CollectingDataVC: UIViewController, ClassSettingsTableVCDelegate  {
                                     let MagZ = dataMag.magneticField.z
                                     
                                     
-                                    print ( "Gyro: \(currenTime) \(GyroX), \(GyroY), \(GyroZ)")
-                                    print ( "Acc : \(currenTime) \(AccX), \(AccY), \(AccZ)")
-                                    print ( "Mag : \(currenTime) \(MagX), \(MagY), \(MagZ)")
+                                    //print ( "Gyro: \(currenTime) \(GyroX), \(GyroY), \(GyroZ)")
+                                    //print ( "Acc : \(currenTime) \(AccX), \(AccY), \(AccZ)")
+                                    //print ( "Mag : \(currenTime) \(MagX), \(MagY), \(MagZ)")
                                     
                                     
                                     if (self.status == .recording){
@@ -166,7 +166,7 @@ class CollectingDataVC: UIViewController, ClassSettingsTableVCDelegate  {
             })
             
             // Add the timer to the current run loop.
-            RunLoop.current.add(self.timer, forMode: .defaultRunLoopMode)
+            RunLoop.current.add(self.timer1, forMode: .defaultRunLoopMode)
         }
     }
     
@@ -237,7 +237,7 @@ class CollectingDataVC: UIViewController, ClassSettingsTableVCDelegate  {
     @IBAction func StartButtonpressed(_ sender: Any) {
         status = .recording
         
-        timer = Timer.scheduledTimer(timeInterval: 0.001, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
         startTime = NSDate.timeIntervalSinceReferenceDate
         
         // Start session recording
@@ -287,16 +287,13 @@ class CollectingDataVC: UIViewController, ClassSettingsTableVCDelegate  {
         let seconds = UInt8(elapsedTime)
         elapsedTime -= TimeInterval(seconds)
         
-        //find out the fraction of milliseconds to be displayed.
-        let fraction = UInt16(elapsedTime * 1000)
         
         //add the leading zero for minutes, seconds and millseconds and store them as string constants
         let strMinutes = String(format: "%02d", minutes)
         let strSeconds = String(format: "%02d", seconds)
-        let strFraction = String(format: "%03d", fraction)
         
         //concatenate minuts, seconds and milliseconds as assign it to the UILabel
-        recordTimeLabel.text = "\(strMinutes):\(strSeconds):\(strFraction)"
+        recordTimeLabel.text = "\(strMinutes):\(strSeconds)"
         recordTime = "\(strMinutes):\(strSeconds)"
     }
     
@@ -314,7 +311,7 @@ class CollectingDataVC: UIViewController, ClassSettingsTableVCDelegate  {
         settingsTableVC?.recordNumberLabel.text = "Next record number:"
         recordStatusImage.isHidden = true
         recordTimeLabel.isHidden = false
-        recordTimeLabel.text = "00:00:000"
+        recordTimeLabel.text = "00:00"
         startButton.isHidden = false
         stopButton.isHidden = false
         startButton.isEnabled = true
