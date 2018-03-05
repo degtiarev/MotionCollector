@@ -40,12 +40,12 @@ class SettingsTableVC: UITableViewController {
     
     
     @IBAction func periodChangedNumber(_ sender: UISlider) {
-        // update period
-        let period = String(format: "%f", sender.value )
-        currentPeriodLabel.text = period
+        // Change moving mode
+        sender.setValue(sender.value.rounded(.down), animated: true)
         
-        // Send new value
-        let newValue = Int (sender.value )
+        // Update label and send value
+        let newValue = Int (sender.value)
+        currentPeriodLabel.text = "\(newValue)"
         delegate?.periodChangedNumberSettingsDelegate(newValue)
     }
     

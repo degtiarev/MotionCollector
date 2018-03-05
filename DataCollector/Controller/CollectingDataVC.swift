@@ -79,6 +79,8 @@ class CollectingDataVC: UIViewController, ClassSettingsTableVCDelegate  {
         
         startGettingData()
         
+        status = .waiting
+        
     }
     
     
@@ -96,16 +98,16 @@ class CollectingDataVC: UIViewController, ClassSettingsTableVCDelegate  {
         // Make sure the motion hardware is available.
         if self.motion.isAccelerometerAvailable, self.motion.isGyroAvailable, self.motion.isMagnetometerAvailable {
             
-            self.motion.accelerometerUpdateInterval = 1.0 / 100.0  // 100 Hz
-            self.motion.gyroUpdateInterval = 1.0 / 100.0  // 100 Hz
-            self.motion.magnetometerUpdateInterval = 1.0 / 100.0  // 100 Hz
+            self.motion.accelerometerUpdateInterval = 1.0 / Double (currentFrequency)
+            self.motion.gyroUpdateInterval = 1.0 / Double (currentFrequency)
+            self.motion.magnetometerUpdateInterval = 1.0 / Double (currentFrequency)
             
             self.motion.startAccelerometerUpdates()
             self.motion.startGyroUpdates()
             self.motion.startMagnetometerUpdates()
             
             // Configure a timer to fetch the data.
-            self.timer = Timer(fire: Date(), interval: (1.0/100.0),
+            self.timer = Timer(fire: Date(), interval: (1.0/Double (currentFrequency)),
                                repeats: true, block: { (timer) in
                                 // Get the motion data.
                                 if let dataAcc = self.motion.accelerometerData, let dataMag = self.motion.magnetometerData, let dataGyro = self.motion.gyroData {
