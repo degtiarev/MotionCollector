@@ -108,67 +108,76 @@ class CollectingDataVC: UIViewController, ClassSettingsTableVCDelegate  {
             
             // Configure a timer to fetch the data.
             self.timer1 = Timer(fire: Date(), interval: (1.0/Double (currentFrequency)),
-                               repeats: true, block: { (timer1) in
-                                // Get the motion data.
-                                if let dataAcc = self.motion.accelerometerData, let dataMag = self.motion.magnetometerData, let dataGyro = self.motion.gyroData {
-                                    //let currenTime = self.returnCurrentTime()
-                                    
-                                    let GyroX = dataGyro.rotationRate.x
-                                    let GyroY = dataGyro.rotationRate.y
-                                    let GyroZ = dataGyro.rotationRate.z
-                                    
-                                    let AccX = dataAcc.acceleration.x
-                                    let AccY = dataAcc.acceleration.y
-                                    let AccZ = dataAcc.acceleration.z
-                                    
-                                    let MagX = dataMag.magneticField.x
-                                    let MagY = dataMag.magneticField.y
-                                    let MagZ = dataMag.magneticField.z
-                                    
-                                    
-                                    //print ( "Gyro: \(currenTime) \(GyroX), \(GyroY), \(GyroZ)")
-                                    //print ( "Acc : \(currenTime) \(AccX), \(AccY), \(AccZ)")
-                                    //print ( "Mag : \(currenTime) \(MagX), \(MagY), \(MagZ)")
-                                    
-                                    
-                                    if (self.status == .recording){
+                                repeats: true, block: { (timer1) in
+                                    // Get the motion data.
+                                    if let dataAcc = self.motion.accelerometerData, let dataMag = self.motion.magnetometerData, let dataGyro = self.motion.gyroData {
+                                        let currenTime = self.returnCurrentTime()
                                         
-                                        let characteristicGyro = Characteristic (context:context)
-                                        characteristicGyro.x = GyroX
-                                        characteristicGyro.y = GyroY
-                                        characteristicGyro.z = GyroZ
-                                        characteristicGyro.toCharacteristicName = self.characteristicsNames[1]
+                                        let GyroX = dataGyro.rotationRate.x
+                                        let GyroY = dataGyro.rotationRate.y
+                                        let GyroZ = dataGyro.rotationRate.z
                                         
-                                        let characteristicAcc = Characteristic (context:context)
-                                        characteristicAcc.x = AccX
-                                        characteristicAcc.y = AccY
-                                        characteristicAcc.z = AccZ
-                                        characteristicAcc.toCharacteristicName = self.characteristicsNames[0]
+                                        let AccX = dataAcc.acceleration.x
+                                        let AccY = dataAcc.acceleration.y
+                                        let AccZ = dataAcc.acceleration.z
                                         
-                                        let characteristicMag = Characteristic (context:context)
-                                        characteristicMag.x = MagX
-                                        characteristicMag.y = MagY
-                                        characteristicMag.z = MagZ
-                                        characteristicMag.toCharacteristicName = self.characteristicsNames[2]
+                                        let MagX = dataMag.magneticField.x
+                                        let MagY = dataMag.magneticField.y
+                                        let MagZ = dataMag.magneticField.z
                                         
                                         
-                                        let sensorData = SensorData(context: context)
-                                        sensorData.timeStamp = Date() as NSDate
-                                        sensorData.addToToCharacteristic(characteristicGyro)
-                                        sensorData.addToToCharacteristic(characteristicAcc)
-                                        sensorData.addToToCharacteristic(characteristicMag)
-                                        self.currentSession?.addToToSensorData(sensorData)
-                                    } //if (self.status == .recording)
+                                        print ( "Gyro: \(currenTime) \(GyroX), \(GyroY), \(GyroZ)")
+                                        print ( "Acc : \(currenTime) \(AccX), \(AccY), \(AccZ)")
+                                        print ( "Mag : \(currenTime) \(MagX), \(MagY), \(MagZ)")
+                                        
+                                        
+                                        if (self.status == .recording){
+                                            
+                                            let characteristicGyro = Characteristic (context:context)
+                                            characteristicGyro.x = GyroX
+                                            characteristicGyro.y = GyroY
+                                            characteristicGyro.z = GyroZ
+                                            characteristicGyro.toCharacteristicName = self.characteristicsNames[1]
+                                            
+                                            let characteristicAcc = Characteristic (context:context)
+                                            characteristicAcc.x = AccX
+                                            characteristicAcc.y = AccY
+                                            characteristicAcc.z = AccZ
+                                            characteristicAcc.toCharacteristicName = self.characteristicsNames[0]
+                                            
+                                            let characteristicMag = Characteristic (context:context)
+                                            characteristicMag.x = MagX
+                                            characteristicMag.y = MagY
+                                            characteristicMag.z = MagZ
+                                            characteristicMag.toCharacteristicName = self.characteristicsNames[2]
+                                            
+                                            
+                                            let sensorData = SensorData(context: context)
+                                            sensorData.timeStamp = Date() as NSDate
+                                            sensorData.addToToCharacteristic(characteristicGyro)
+                                            sensorData.addToToCharacteristic(characteristicAcc)
+                                            sensorData.addToToCharacteristic(characteristicMag)
+                                            self.currentSession?.addToToSensorData(sensorData)
+                                        } //if (self.status == .recording)
+                                        
+                                        
+                                    }
                                     
-                                    
-                                }
-                                
             })
             
             // Add the timer to the current run loop.
             RunLoop.current.add(self.timer1, forMode: .defaultRunLoopMode)
         }
     }
+    
+    func stopGettingData() {
+        timer1.invalidate()
+        self.motion.stopGyroUpdates()
+        self.motion.stopAccelerometerUpdates()
+        self.motion.stopMagnetometerUpdates()
+    }
+    
+    
     
     
     
@@ -214,6 +223,8 @@ class CollectingDataVC: UIViewController, ClassSettingsTableVCDelegate  {
     
     func periodChangedNumberSettingsDelegate(_ number: Int){
         currentFrequency = number
+        stopGettingData()
+        startGettingData()
     }
     
     func isWalkingChangedValueSettingsDelegate(_ value: Bool){

@@ -300,7 +300,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="1" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="CiE-hg-cmP">
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="CiE-hg-cmP">
                                                     <rect key="frame" x="19" y="7" width="282" height="31"/>
                                                     <connections>
                                                         <action selector="periodChangedNumber:" destination="4RA-xZ-WkZ" eventType="valueChanged" id="QI7-46-EJL"/>
