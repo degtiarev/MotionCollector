@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17D102" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Characteristic" representedClassName="Characteristic" syncable="YES">
+        <attribute name="x" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="y" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="z" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="toCharacteristicName" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CharacteristicName" inverseName="toCharacteristic" inverseEntity="CharacteristicName" syncable="YES"/>
+        <relationship name="toSensorData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SensorData" inverseName="toCharacteristic" inverseEntity="SensorData" syncable="YES"/>
+    </entity>
+    <entity name="CharacteristicName" representedClassName="CharacteristicName" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="toCharacteristic" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Characteristic" inverseName="toCharacteristicName" inverseEntity="Characteristic" syncable="YES"/>
+    </entity>
+    <entity name="SensorData" representedClassName="SensorData" syncable="YES">
+        <attribute name="timeStamp" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="toCharacteristic" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Characteristic" inverseName="toSensorData" inverseEntity="Characteristic" syncable="YES"/>
+        <relationship name="toSession" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Session" inverseName="toSensorData" inverseEntity="Session" syncable="YES"/>
+    </entity>
+    <entity name="Session" representedClassName="Session" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="duration" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="frequency" optional="YES" attributeType="Integer 32" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isWalking" optional="YES" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="toSensorData" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SensorData" inverseName="toSession" inverseEntity="SensorData" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Characteristic" positionX="-522" positionY="-81" width="128" height="118"/>
+        <element name="CharacteristicName" positionX="-506" positionY="206" width="128" height="73"/>
+        <element name="SensorData" positionX="-272" positionY="-90" width="128" height="88"/>
+        <element name="Session" positionX="-288" positionY="162" width="128" height="133"/>
+    </elements>
+</model>
