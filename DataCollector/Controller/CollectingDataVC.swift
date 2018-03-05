@@ -52,6 +52,7 @@ class CollectingDataVC: UIViewController, ClassSettingsTableVCDelegate  {
     var currentSession: Session? = nil
     var nextSessionid: Int = 0
     var recordTime: String = ""
+    var sensorOutputs = [SensorOutput]()
     var characteristicsNames  = [CharacteristicName]()
     
     
@@ -133,31 +134,25 @@ class CollectingDataVC: UIViewController, ClassSettingsTableVCDelegate  {
                                         
                                         if (self.status == .recording){
                                             
-                                            let characteristicGyro = Characteristic (context:context)
-                                            characteristicGyro.x = GyroX
-                                            characteristicGyro.y = GyroY
-                                            characteristicGyro.z = GyroZ
-                                            characteristicGyro.toCharacteristicName = self.characteristicsNames[1]
                                             
-                                            let characteristicAcc = Characteristic (context:context)
-                                            characteristicAcc.x = AccX
-                                            characteristicAcc.y = AccY
-                                            characteristicAcc.z = AccZ
-                                            characteristicAcc.toCharacteristicName = self.characteristicsNames[0]
+                                            let sensorOutput = SensorOutput()
                                             
-                                            let characteristicMag = Characteristic (context:context)
-                                            characteristicMag.x = MagX
-                                            characteristicMag.y = MagY
-                                            characteristicMag.z = MagZ
-                                            characteristicMag.toCharacteristicName = self.characteristicsNames[2]
+                                            sensorOutput.timeStamp = Date() as NSDate
                                             
+                                            sensorOutput.gyroX = GyroX
+                                            sensorOutput.gyroY = GyroY
+                                            sensorOutput.gyroZ = GyroZ
                                             
-                                            let sensorData = SensorData(context: context)
-                                            sensorData.timeStamp = Date() as NSDate
-                                            sensorData.addToToCharacteristic(characteristicGyro)
-                                            sensorData.addToToCharacteristic(characteristicAcc)
-                                            sensorData.addToToCharacteristic(characteristicMag)
-                                            self.currentSession?.addToToSensorData(sensorData)
+                                            sensorOutput.accX = AccX
+                                            sensorOutput.accY = AccY
+                                            sensorOutput.accZ = AccZ
+                                            
+                                            sensorOutput.magX = MagX
+                                            sensorOutput.magY = MagY
+                                            sensorOutput.magZ = MagZ
+                                            
+                                            self.sensorOutputs.append(sensorOutput)
+                                            
                                         } //if (self.status == .recording)
                                         
                                         
@@ -265,6 +260,38 @@ class CollectingDataVC: UIViewController, ClassSettingsTableVCDelegate  {
         // Finish session recording
         timer.invalidate()
         currentSession?.duration = recordTime
+        
+        for sensorOutput in sensorOutputs {
+            
+            let characteristicGyro = Characteristic (context:context)
+            characteristicGyro.x = sensorOutput.gyroX!
+            characteristicGyro.y = sensorOutput.gyroY!
+            characteristicGyro.z = sensorOutput.gyroZ!
+            characteristicGyro.toCharacteristicName = self.characteristicsNames[1]
+            
+            let characteristicAcc = Characteristic (context:context)
+            characteristicAcc.x = sensorOutput.accX!
+            characteristicAcc.y = sensorOutput.accY!
+            characteristicAcc.z = sensorOutput.accZ!
+            characteristicAcc.toCharacteristicName = self.characteristicsNames[0]
+            
+            let characteristicMag = Characteristic (context:context)
+            characteristicMag.x = sensorOutput.magX!
+            characteristicMag.y = sensorOutput.magY!
+            characteristicMag.z = sensorOutput.magZ!
+            characteristicMag.toCharacteristicName = self.characteristicsNames[2]
+            
+            
+            let sensorData = SensorData(context: context)
+            sensorData.timeStamp = sensorOutput.timeStamp
+            sensorData.addToToCharacteristic(characteristicGyro)
+            sensorData.addToToCharacteristic(characteristicAcc)
+            sensorData.addToToCharacteristic(characteristicMag)
+            self.currentSession?.addToToSensorData(sensorData)
+            
+        }
+        
+        sensorOutputs.removeAll()
         ad.saveContext()
         currentSession = nil
         nextSessionid += 1

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		DC119ECE204ABFA00035ED8F /* SensorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC119ECD204ABFA00035ED8F /* SensorOutput.swift */; };
 		DC23343E204386E900232A8A /* DataCollector.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC23343C204386E900232A8A /* DataCollector.xcdatamodeld */; };
+		DC518AE5204DA01100FB2AD6 /* phone.png in Resources */ = {isa = PBXBuildFile; fileRef = DC518AE4204DA01100FB2AD6 /* phone.png */; };
 		DC972306204150C0002047EF /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC972305204150C0002047EF /* ItemCell.swift */; };
 		DCA52D7F2046A7F00011AA74 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA52D7E2046A7F00011AA74 /* RoundButton.swift */; };
 		DCB7BBF1203A5688001F1E9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB7BBF0203A5688001F1E9F /* AppDelegate.swift */; };
@@ -31,6 +32,7 @@
 /* Begin PBXFileReference section */
 		DC119ECD204ABFA00035ED8F /* SensorOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorOutput.swift; sourceTree = "<group>"; };
 		DC23343D204386E900232A8A /* DataCollector.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataCollector.xcdatamodel; sourceTree = "<group>"; };
+		DC518AE4204DA01100FB2AD6 /* phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = phone.png; path = DataCollector/Assets.xcassets/phone.imageset/phone.png; sourceTree = SOURCE_ROOT; };
 		DC972305204150C0002047EF /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		DCA52D7E2046A7F00011AA74 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		DCB7BBED203A5688001F1E9F /* MotionCollector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MotionCollector.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,6 +144,7 @@
 		DCB7BC08203A58C5001F1E9F /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				DC518AE4204DA01100FB2AD6 /* phone.png */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 			files = (
 				DCB7BBFE203A5688001F1E9F /* LaunchScreen.storyboard in Resources */,
 				DCB7BBFB203A5688001F1E9F /* Assets.xcassets in Resources */,
+				DC518AE5204DA01100FB2AD6 /* phone.png in Resources */,
 				DCB7BBF6203A5688001F1E9F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,7 +378,7 @@
 				DEVELOPMENT_TEAM = Z8822C26BQ;
 				INFOPLIST_FILE = DataCollector/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = delexa.DataCollector;
+				PRODUCT_BUNDLE_IDENTIFIER = delexa.MotionCollector;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -389,7 +393,7 @@
 				DEVELOPMENT_TEAM = Z8822C26BQ;
 				INFOPLIST_FILE = DataCollector/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = delexa.DataCollector;
+				PRODUCT_BUNDLE_IDENTIFIER = delexa.MotionCollector;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
