@@ -8,30 +8,29 @@
 
 import UIKit
 
-private var isRound = false
 
-
-extension UIView {
+@IBDesignable
+class CircleButton: UIButton {
     
-    @IBInspectable var roundButton: Bool {
+    @IBInspectable var isRound: Bool = false {
         
-        get {
-            return isRound
-        }
-        
-        set {
-            isRound = newValue
-            
+        didSet {
             if isRound {
-                self.layer.cornerRadius = self.bounds.size.width / 2.0
-                self.clipsToBounds = true
-                
-                
+                setupView()
             }
         }
-        
     }
     
+    override func prepareForInterfaceBuilder() {
+        if isRound {
+            setupView()
+        }
+    }
+    
+    func setupView() {
+        self.layer.cornerRadius = self.bounds.size.width / 2.0
+        self.clipsToBounds = true
+    }
     
 }
 
