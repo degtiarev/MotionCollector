@@ -8,13 +8,12 @@
 
 import UIKit
 
-class ItemCell: UITableViewCell {
+class ItemSessionCell: UITableViewCell {
     
     @IBOutlet weak var idSessionLabel: UILabel!
     @IBOutlet weak var dateSessionLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var periodLabel: UILabel!
-    @IBOutlet weak var sensorsLabel: UILabel!
     @IBOutlet weak var isWalkingLabel: UILabel!
     
     
@@ -33,7 +32,4 @@ class ItemCell: UITableViewCell {
         isWalkingLabel.text = "\(session.isWalking)"
     }
     
-    
-    @IBAction func deletePressedButton(_ sender: Any) {
-    }
 }

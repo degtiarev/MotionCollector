@@ -11,7 +11,7 @@ import CoreMotion
 import CoreData
 
 
-class CollectingDataVC: UIViewController, ClassSettingsTableVCDelegate  {
+class CollectingDataVC: UIViewController, SettingsTableVCDelegate, RecordIDVCDelegate {
     
     // Statuses
     enum Status {
@@ -41,6 +41,7 @@ class CollectingDataVC: UIViewController, ClassSettingsTableVCDelegate  {
     // Settings view controller
     weak var settingsTableVC:SettingsTableVC?
     
+    
     // Controlls outlets
     @IBOutlet weak var recordTimeLabel: UILabel!
     @IBOutlet weak var recordStatusImage: UIImageView!
@@ -63,7 +64,7 @@ class CollectingDataVC: UIViewController, ClassSettingsTableVCDelegate  {
     
     // Changing variable
     var currentFrequency: Int = 0
-    var isWalking: Int = 0
+    var recordID: Int = 0
     
     
     // For motion getting
@@ -92,6 +93,15 @@ class CollectingDataVC: UIViewController, ClassSettingsTableVCDelegate  {
             settingsTableVC.delegate = self
             self.settingsTableVC = segue.destination as? SettingsTableVC
         }
+        
+        if let recordIDVC = destination as? RecordIDVC {
+            recordIDVC.delegate = self
+            
+            if let recordID = sender as? Int {
+                recordIDVC.selectedID = recordID
+            }
+        }
+        
     }
     
     
@@ -215,22 +225,20 @@ class CollectingDataVC: UIViewController, ClassSettingsTableVCDelegate  {
     
     // MARK - Dekegate settings updates
     
-    
     func periodChangedNumberSettingsDelegate(_ number: Int){
         currentFrequency = number
         stopGettingData()
         startGettingData()
     }
     
-    func isWalkingChangedValueSettingsDelegate(_ value: Bool){
-        if value {
-            isWalking = 1
-        }
-        else {
-            isWalking = 0
-        }
+    func changeIDpressed(){
+        performSegue(withIdentifier: "toRecordIDSettings", sender: recordID)
     }
     
+    func recordIDChangedNumberSettingsDelegate(_ number: Int){
+        recordID = number
+        settingsTableVC?.recordID.text = "\(number)"
+    }
     
     
     
@@ -251,7 +259,7 @@ class CollectingDataVC: UIViewController, ClassSettingsTableVCDelegate  {
         currentSession?.id = Int32(nextSessionid)
         currentSession?.date = NSDate()
         currentSession?.frequency = Int32(currentFrequency)
-        currentSession?.isWalking = Int32(isWalking)
+        currentSession?.isWalking = Int32(recordID)
     }
     
     
@@ -357,7 +365,7 @@ class CollectingDataVC: UIViewController, ClassSettingsTableVCDelegate  {
         stopButton.isHidden = false
         startButton.isEnabled = true
         stopButton.isEnabled = false
-        settingsTableVC?.isWalkingSwitch.isEnabled = true
+        settingsTableVC?.tableView.allowsSelection = true
         
     }
     
@@ -370,7 +378,7 @@ class CollectingDataVC: UIViewController, ClassSettingsTableVCDelegate  {
         settingsTableVC?.currentRecordNumberLabel.text = "\(nextSessionid)"
         startButton.isEnabled = false
         stopButton.isEnabled = true
-        settingsTableVC?.isWalkingSwitch.isEnabled = false
+        settingsTableVC?.tableView.allowsSelection = false
         settingsTableVC?.recordNumberLabel.text = "Record number:"
         
     }

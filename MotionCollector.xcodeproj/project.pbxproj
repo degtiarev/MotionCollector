@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		DC119ECE204ABFA00035ED8F /* SensorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC119ECD204ABFA00035ED8F /* SensorOutput.swift */; };
 		DC23343E204386E900232A8A /* DataCollector.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC23343C204386E900232A8A /* DataCollector.xcdatamodeld */; };
-		DC972306204150C0002047EF /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC972305204150C0002047EF /* ItemCell.swift */; };
+		DC972306204150C0002047EF /* ItemSessionSessionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC972305204150C0002047EF /* ItemSessionSessionCell.swift */; };
 		DCA52D7F2046A7F00011AA74 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA52D7E2046A7F00011AA74 /* RoundButton.swift */; };
 		DCB7BBF1203A5688001F1E9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB7BBF0203A5688001F1E9F /* AppDelegate.swift */; };
 		DCB7BBF3203A5688001F1E9F /* CollectingDataVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB7BBF2203A5688001F1E9F /* CollectingDataVC.swift */; };
@@ -17,6 +17,8 @@
 		DCB7BBFB203A5688001F1E9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCB7BBFA203A5688001F1E9F /* Assets.xcassets */; };
 		DCB7BBFE203A5688001F1E9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCB7BBFC203A5688001F1E9F /* LaunchScreen.storyboard */; };
 		DCB7BC0C203A6321001F1E9F /* ExportDataVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB7BC0B203A6321001F1E9F /* ExportDataVC.swift */; };
+		DCE4CC65206E0A620043180A /* RecordIDVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4CC64206E0A620043180A /* RecordIDVC.swift */; };
+		DCE4CC67206E1D750043180A /* SessionIDCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4CC66206E1D750043180A /* SessionIDCell.swift */; };
 		DCF06E6F204D683400B776E4 /* SensorData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF06E67204D683400B776E4 /* SensorData+CoreDataClass.swift */; };
 		DCF06E70204D683400B776E4 /* SensorData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF06E68204D683400B776E4 /* SensorData+CoreDataProperties.swift */; };
 		DCF06E71204D683400B776E4 /* Session+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF06E69204D683400B776E4 /* Session+CoreDataClass.swift */; };
@@ -31,7 +33,7 @@
 /* Begin PBXFileReference section */
 		DC119ECD204ABFA00035ED8F /* SensorOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorOutput.swift; sourceTree = "<group>"; };
 		DC23343D204386E900232A8A /* DataCollector.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataCollector.xcdatamodel; sourceTree = "<group>"; };
-		DC972305204150C0002047EF /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		DC972305204150C0002047EF /* ItemSessionSessionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSessionSessionCell.swift; sourceTree = "<group>"; };
 		DCA52D7E2046A7F00011AA74 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		DCB7BBED203A5688001F1E9F /* MotionCollector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MotionCollector.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCB7BBF0203A5688001F1E9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +43,8 @@
 		DCB7BBFD203A5688001F1E9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DCB7BBFF203A5688001F1E9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCB7BC0B203A6321001F1E9F /* ExportDataVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportDataVC.swift; sourceTree = "<group>"; };
+		DCE4CC64206E0A620043180A /* RecordIDVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordIDVC.swift; sourceTree = "<group>"; };
+		DCE4CC66206E1D750043180A /* SessionIDCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionIDCell.swift; sourceTree = "<group>"; };
 		DCF06E67204D683400B776E4 /* SensorData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SensorData+CoreDataClass.swift"; sourceTree = "<group>"; };
 		DCF06E68204D683400B776E4 /* SensorData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SensorData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DCF06E69204D683400B776E4 /* Session+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -118,8 +122,9 @@
 		DCB7BC06203A5839001F1E9F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				DC972305204150C0002047EF /* ItemCell.swift */,
 				DCA52D7E2046A7F00011AA74 /* RoundButton.swift */,
+				DC972305204150C0002047EF /* ItemSessionSessionCell.swift */,
+				DCE4CC66206E1D750043180A /* SessionIDCell.swift */,
 				DCB7BBF4203A5688001F1E9F /* Main.storyboard */,
 				DCB7BBFC203A5688001F1E9F /* LaunchScreen.storyboard */,
 			);
@@ -131,6 +136,7 @@
 			children = (
 				DCB7BBF2203A5688001F1E9F /* CollectingDataVC.swift */,
 				DCF103ED2046BB17005B63C5 /* SettingsTableVC.swift */,
+				DCE4CC64206E0A620043180A /* RecordIDVC.swift */,
 				DCB7BC0B203A6321001F1E9F /* ExportDataVC.swift */,
 				DCB7BBF0203A5688001F1E9F /* AppDelegate.swift */,
 			);
@@ -220,7 +226,8 @@
 			files = (
 				DCF06E72204D683400B776E4 /* Session+CoreDataProperties.swift in Sources */,
 				DCB7BC0C203A6321001F1E9F /* ExportDataVC.swift in Sources */,
-				DC972306204150C0002047EF /* ItemCell.swift in Sources */,
+				DC972306204150C0002047EF /* ItemSessionSessionCell.swift in Sources */,
+				DCE4CC65206E0A620043180A /* RecordIDVC.swift in Sources */,
 				DCF06E73204D683400B776E4 /* Characteristic+CoreDataClass.swift in Sources */,
 				DCF103EE2046BB17005B63C5 /* SettingsTableVC.swift in Sources */,
 				DC119ECE204ABFA00035ED8F /* SensorOutput.swift in Sources */,
@@ -228,6 +235,7 @@
 				DCF06E70204D683400B776E4 /* SensorData+CoreDataProperties.swift in Sources */,
 				DCB7BBF3203A5688001F1E9F /* CollectingDataVC.swift in Sources */,
 				DCF06E75204D683400B776E4 /* CharacteristicName+CoreDataClass.swift in Sources */,
+				DCE4CC67206E1D750043180A /* SessionIDCell.swift in Sources */,
 				DCB7BBF1203A5688001F1E9F /* AppDelegate.swift in Sources */,
 				DCF06E76204D683400B776E4 /* CharacteristicName+CoreDataProperties.swift in Sources */,
 				DCF06E6F204D683400B776E4 /* SensorData+CoreDataClass.swift in Sources */,

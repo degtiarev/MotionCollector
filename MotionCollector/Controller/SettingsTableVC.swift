@@ -9,9 +9,9 @@
 import UIKit
 
 
-protocol ClassSettingsTableVCDelegate: class {
+protocol SettingsTableVCDelegate: class {
     func periodChangedNumberSettingsDelegate(_ number: Int)
-    func isWalkingChangedValueSettingsDelegate(_ value: Bool)
+    func changeIDpressed()
 }
 
 
@@ -23,10 +23,10 @@ class SettingsTableVC: UITableViewController {
     @IBOutlet weak var periodSlider: UISlider!
     @IBOutlet weak var recordNumberLabel: UILabel!
     @IBOutlet weak var currentRecordNumberLabel: UILabel!
-    @IBOutlet weak var isWalkingSwitch: UISwitch!
+    @IBOutlet weak var recordID: UILabel!
     
     
-    weak var delegate: ClassSettingsTableVCDelegate?
+    weak var delegate: SettingsTableVCDelegate?
     
     
     override func viewDidLoad() {
@@ -34,9 +34,7 @@ class SettingsTableVC: UITableViewController {
         
         // Update start current value
         periodChangedNumber(periodSlider)
-        isWalkingChangedValue(isWalkingSwitch)
     }
-    
     
     
     @IBAction func periodChangedNumber(_ sender: UISlider) {
@@ -50,8 +48,11 @@ class SettingsTableVC: UITableViewController {
     }
     
     
-    @IBAction func isWalkingChangedValue(_ sender: UISwitch) {
-        delegate?.isWalkingChangedValueSettingsDelegate(sender.isOn)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if indexPath.section == 0 && indexPath.row == 1 {
+            delegate?.changeIDpressed()
+        }
     }
     
 }
