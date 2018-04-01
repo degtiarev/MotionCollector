@@ -179,7 +179,7 @@ class ExportDataVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         formatter.dateFormat = "yyyy-MM-dd_HH-mm-ss"
         let sessionDate = formatter.string(from: date)
         
-        let fileName = "Sessions_\(sessionDate).csv"
+        let fileName = "Motion-sessions_\(sessionDate).csv"
         let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
         var csvText = "SessionID,SessionDate,SessionDuration,SessionFrequency,RecordID,Timestamp,timeIntervalSince1970,GyroX,GyroY,GyroZ,AccX,AccY,AccZ,MagX,MagY,MagZ\n"
         
