@@ -172,8 +172,14 @@ class ExportDataVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     @IBAction func exportPressed(_ sender: Any) {
+        FileManager.default.clearTmpDirectory()
         
-        let fileName = "Sessions.csv"
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd_HH-mm-ss"
+        let sessionDate = formatter.string(from: date)
+        
+        let fileName = "Sessions_\(sessionDate).csv"
         let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
         var csvText = "SessionID,SessionDate,SessionDuration,SessionFrequency,RecordID,Timestamp,timeIntervalSince1970,GyroX,GyroY,GyroZ,AccX,AccY,AccZ,MagX,MagY,MagZ\n"
         
@@ -247,7 +253,7 @@ class ExportDataVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         }
         
         
-        if let fileURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("Sessions.csv") as URL? {
+        if let fileURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName) as URL? {
             let objectsToShare = [fileURL]
             let activityController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
             let excludedActivities = [UIActivityType.postToFlickr, UIActivityType.postToWeibo, UIActivityType.message, UIActivityType.mail, UIActivityType.print, UIActivityType.copyToPasteboard, UIActivityType.assignToContact, UIActivityType.saveToCameraRoll, UIActivityType.addToReadingList, UIActivityType.postToFlickr, UIActivityType.postToVimeo, UIActivityType.postToTencentWeibo]
@@ -290,4 +296,19 @@ class ExportDataVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     
+}
+
+
+extension FileManager {
+    func clearTmpDirectory() {
+        do {
+            let tmpDirectory = try contentsOfDirectory(atPath: NSTemporaryDirectory())
+            try tmpDirectory.forEach {[unowned self] file in
+                let path = String.init(format: "%@%@", NSTemporaryDirectory(), file)
+                try self.removeItem(atPath: path)
+            }
+        } catch {
+            print(error)
+        }
+    }
 }
