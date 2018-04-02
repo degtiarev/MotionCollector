@@ -9,6 +9,15 @@
 /* Begin PBXBuildFile section */
 		DC119ECE204ABFA00035ED8F /* SensorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC119ECD204ABFA00035ED8F /* SensorOutput.swift */; };
 		DC23343E204386E900232A8A /* DataCollector.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC23343C204386E900232A8A /* DataCollector.xcdatamodeld */; };
+		DC39DF5E2071FE0200B34F13 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC39DF5C2071FE0200B34F13 /* Interface.storyboard */; };
+		DC39DF602071FE0200B34F13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC39DF5F2071FE0200B34F13 /* Assets.xcassets */; };
+		DC39DF672071FE0200B34F13 /* MotionCollectorWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DC39DF662071FE0200B34F13 /* MotionCollectorWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		DC39DF6C2071FE0200B34F13 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC39DF6B2071FE0200B34F13 /* InterfaceController.swift */; };
+		DC39DF6E2071FE0200B34F13 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC39DF6D2071FE0200B34F13 /* ExtensionDelegate.swift */; };
+		DC39DF702071FE0200B34F13 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC39DF6F2071FE0200B34F13 /* NotificationController.swift */; };
+		DC39DF722071FE0200B34F13 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC39DF712071FE0200B34F13 /* ComplicationController.swift */; };
+		DC39DF742071FE0200B34F13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC39DF732071FE0200B34F13 /* Assets.xcassets */; };
+		DC39DF792071FE0200B34F13 /* MotionCollectorWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = DC39DF5A2071FE0100B34F13 /* MotionCollectorWatch.app */; };
 		DC972306204150C0002047EF /* ItemSessionSessionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC972305204150C0002047EF /* ItemSessionSessionCell.swift */; };
 		DCA52D7F2046A7F00011AA74 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA52D7E2046A7F00011AA74 /* RoundButton.swift */; };
 		DCB7BBF1203A5688001F1E9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB7BBF0203A5688001F1E9F /* AppDelegate.swift */; };
@@ -17,14 +26,6 @@
 		DCB7BBFB203A5688001F1E9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCB7BBFA203A5688001F1E9F /* Assets.xcassets */; };
 		DCB7BBFE203A5688001F1E9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCB7BBFC203A5688001F1E9F /* LaunchScreen.storyboard */; };
 		DCB7BC0C203A6321001F1E9F /* ExportDataVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB7BC0B203A6321001F1E9F /* ExportDataVC.swift */; };
-		DCBBE52B20712E7C004B48FF /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCBBE52920712E7C004B48FF /* Interface.storyboard */; };
-		DCBBE52D20712E7C004B48FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCBBE52C20712E7C004B48FF /* Assets.xcassets */; };
-		DCBBE53420712E7D004B48FF /* MotionCollectorWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DCBBE53320712E7D004B48FF /* MotionCollectorWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		DCBBE53920712E7D004B48FF /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBBE53820712E7D004B48FF /* InterfaceController.swift */; };
-		DCBBE53B20712E7D004B48FF /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBBE53A20712E7D004B48FF /* ExtensionDelegate.swift */; };
-		DCBBE53D20712E7D004B48FF /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBBE53C20712E7D004B48FF /* NotificationController.swift */; };
-		DCBBE53F20712E7D004B48FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCBBE53E20712E7D004B48FF /* Assets.xcassets */; };
-		DCBBE54420712E7D004B48FF /* MotionCollectorWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = DCBBE52720712E7C004B48FF /* MotionCollectorWatch.app */; };
 		DCE4CC65206E0A620043180A /* RecordIDVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4CC64206E0A620043180A /* RecordIDVC.swift */; };
 		DCE4CC67206E1D750043180A /* SessionIDCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE4CC66206E1D750043180A /* SessionIDCell.swift */; };
 		DCF06E6F204D683400B776E4 /* SensorData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF06E67204D683400B776E4 /* SensorData+CoreDataClass.swift */; };
@@ -39,41 +40,41 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		DCBBE53520712E7D004B48FF /* PBXContainerItemProxy */ = {
+		DC39DF682071FE0200B34F13 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DCB7BBE5203A5688001F1E9F /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = DCBBE53220712E7D004B48FF;
+			remoteGlobalIDString = DC39DF652071FE0200B34F13;
 			remoteInfo = "MotionCollectorWatch Extension";
 		};
-		DCBBE54220712E7D004B48FF /* PBXContainerItemProxy */ = {
+		DC39DF772071FE0200B34F13 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DCB7BBE5203A5688001F1E9F /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = DCBBE52620712E7C004B48FF;
+			remoteGlobalIDString = DC39DF592071FE0100B34F13;
 			remoteInfo = MotionCollectorWatch;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		DCBBE54A20712E7D004B48FF /* Embed App Extensions */ = {
+		DC39DF7F2071FE0200B34F13 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				DCBBE53420712E7D004B48FF /* MotionCollectorWatch Extension.appex in Embed App Extensions */,
+				DC39DF672071FE0200B34F13 /* MotionCollectorWatch Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DCBBE54C20712E7D004B48FF /* Embed Watch Content */ = {
+		DC39DF812071FE0200B34F13 /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				DCBBE54420712E7D004B48FF /* MotionCollectorWatch.app in Embed Watch Content */,
+				DC39DF792071FE0200B34F13 /* MotionCollectorWatch.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -83,6 +84,18 @@
 /* Begin PBXFileReference section */
 		DC119ECD204ABFA00035ED8F /* SensorOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorOutput.swift; sourceTree = "<group>"; };
 		DC23343D204386E900232A8A /* DataCollector.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataCollector.xcdatamodel; sourceTree = "<group>"; };
+		DC39DF5A2071FE0100B34F13 /* MotionCollectorWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MotionCollectorWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC39DF5D2071FE0200B34F13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		DC39DF5F2071FE0200B34F13 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DC39DF612071FE0200B34F13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC39DF662071FE0200B34F13 /* MotionCollectorWatch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "MotionCollectorWatch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC39DF6B2071FE0200B34F13 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		DC39DF6D2071FE0200B34F13 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		DC39DF6F2071FE0200B34F13 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		DC39DF712071FE0200B34F13 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		DC39DF732071FE0200B34F13 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DC39DF752071FE0200B34F13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC39DF762071FE0200B34F13 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		DC972305204150C0002047EF /* ItemSessionSessionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSessionSessionCell.swift; sourceTree = "<group>"; };
 		DCA52D7E2046A7F00011AA74 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		DCB7BBED203A5688001F1E9F /* MotionCollector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MotionCollector.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,17 +106,6 @@
 		DCB7BBFD203A5688001F1E9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DCB7BBFF203A5688001F1E9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCB7BC0B203A6321001F1E9F /* ExportDataVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportDataVC.swift; sourceTree = "<group>"; };
-		DCBBE52720712E7C004B48FF /* MotionCollectorWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MotionCollectorWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		DCBBE52A20712E7C004B48FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
-		DCBBE52C20712E7C004B48FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		DCBBE52E20712E7C004B48FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DCBBE53320712E7D004B48FF /* MotionCollectorWatch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "MotionCollectorWatch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DCBBE53820712E7D004B48FF /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
-		DCBBE53A20712E7D004B48FF /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
-		DCBBE53C20712E7D004B48FF /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
-		DCBBE53E20712E7D004B48FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		DCBBE54020712E7D004B48FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DCBBE54120712E7D004B48FF /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		DCE4CC64206E0A620043180A /* RecordIDVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordIDVC.swift; sourceTree = "<group>"; };
 		DCE4CC66206E1D750043180A /* SessionIDCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionIDCell.swift; sourceTree = "<group>"; };
 		DCF06E67204D683400B776E4 /* SensorData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SensorData+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -118,14 +120,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		DCB7BBEA203A5688001F1E9F /* Frameworks */ = {
+		DC39DF632071FE0200B34F13 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DCBBE53020712E7D004B48FF /* Frameworks */ = {
+		DCB7BBEA203A5688001F1E9F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -135,6 +137,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DC39DF5B2071FE0200B34F13 /* MotionCollectorWatch */ = {
+			isa = PBXGroup;
+			children = (
+				DC39DF5C2071FE0200B34F13 /* Interface.storyboard */,
+				DC39DF5F2071FE0200B34F13 /* Assets.xcassets */,
+				DC39DF612071FE0200B34F13 /* Info.plist */,
+			);
+			path = MotionCollectorWatch;
+			sourceTree = "<group>";
+		};
+		DC39DF6A2071FE0200B34F13 /* MotionCollectorWatch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				DC39DF6B2071FE0200B34F13 /* InterfaceController.swift */,
+				DC39DF6D2071FE0200B34F13 /* ExtensionDelegate.swift */,
+				DC39DF6F2071FE0200B34F13 /* NotificationController.swift */,
+				DC39DF712071FE0200B34F13 /* ComplicationController.swift */,
+				DC39DF732071FE0200B34F13 /* Assets.xcassets */,
+				DC39DF752071FE0200B34F13 /* Info.plist */,
+				DC39DF762071FE0200B34F13 /* PushNotificationPayload.apns */,
+			);
+			path = "MotionCollectorWatch Extension";
+			sourceTree = "<group>";
+		};
 		DC9722F020414B94002047EF /* Generated */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,8 +176,8 @@
 			isa = PBXGroup;
 			children = (
 				DCB7BBEF203A5688001F1E9F /* MotionCollector */,
-				DCBBE52820712E7C004B48FF /* MotionCollectorWatch */,
-				DCBBE53720712E7D004B48FF /* MotionCollectorWatch Extension */,
+				DC39DF5B2071FE0200B34F13 /* MotionCollectorWatch */,
+				DC39DF6A2071FE0200B34F13 /* MotionCollectorWatch Extension */,
 				DCB7BBEE203A5688001F1E9F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -160,8 +186,8 @@
 			isa = PBXGroup;
 			children = (
 				DCB7BBED203A5688001F1E9F /* MotionCollector.app */,
-				DCBBE52720712E7C004B48FF /* MotionCollectorWatch.app */,
-				DCBBE53320712E7D004B48FF /* MotionCollectorWatch Extension.appex */,
+				DC39DF5A2071FE0100B34F13 /* MotionCollectorWatch.app */,
+				DC39DF662071FE0200B34F13 /* MotionCollectorWatch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -224,75 +250,33 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
-		DCBBE52820712E7C004B48FF /* MotionCollectorWatch */ = {
-			isa = PBXGroup;
-			children = (
-				DCBBE52920712E7C004B48FF /* Interface.storyboard */,
-				DCBBE52C20712E7C004B48FF /* Assets.xcassets */,
-				DCBBE52E20712E7C004B48FF /* Info.plist */,
-			);
-			path = MotionCollectorWatch;
-			sourceTree = "<group>";
-		};
-		DCBBE53720712E7D004B48FF /* MotionCollectorWatch Extension */ = {
-			isa = PBXGroup;
-			children = (
-				DCBBE53820712E7D004B48FF /* InterfaceController.swift */,
-				DCBBE53A20712E7D004B48FF /* ExtensionDelegate.swift */,
-				DCBBE53C20712E7D004B48FF /* NotificationController.swift */,
-				DCBBE53E20712E7D004B48FF /* Assets.xcassets */,
-				DCBBE54020712E7D004B48FF /* Info.plist */,
-				DCBBE54120712E7D004B48FF /* PushNotificationPayload.apns */,
-			);
-			path = "MotionCollectorWatch Extension";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DCB7BBEC203A5688001F1E9F /* MotionCollector */ = {
+		DC39DF592071FE0100B34F13 /* MotionCollectorWatch */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DCB7BC02203A5688001F1E9F /* Build configuration list for PBXNativeTarget "MotionCollector" */;
+			buildConfigurationList = DC39DF802071FE0200B34F13 /* Build configuration list for PBXNativeTarget "MotionCollectorWatch" */;
 			buildPhases = (
-				DCB7BBE9203A5688001F1E9F /* Sources */,
-				DCB7BBEA203A5688001F1E9F /* Frameworks */,
-				DCB7BBEB203A5688001F1E9F /* Resources */,
-				DCBBE54C20712E7D004B48FF /* Embed Watch Content */,
+				DC39DF582071FE0100B34F13 /* Resources */,
+				DC39DF7F2071FE0200B34F13 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				DCBBE54320712E7D004B48FF /* PBXTargetDependency */,
-			);
-			name = MotionCollector;
-			productName = DataCollector;
-			productReference = DCB7BBED203A5688001F1E9F /* MotionCollector.app */;
-			productType = "com.apple.product-type.application";
-		};
-		DCBBE52620712E7C004B48FF /* MotionCollectorWatch */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DCBBE54B20712E7D004B48FF /* Build configuration list for PBXNativeTarget "MotionCollectorWatch" */;
-			buildPhases = (
-				DCBBE52520712E7C004B48FF /* Resources */,
-				DCBBE54A20712E7D004B48FF /* Embed App Extensions */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DCBBE53620712E7D004B48FF /* PBXTargetDependency */,
+				DC39DF692071FE0200B34F13 /* PBXTargetDependency */,
 			);
 			name = MotionCollectorWatch;
 			productName = MotionCollectorWatch;
-			productReference = DCBBE52720712E7C004B48FF /* MotionCollectorWatch.app */;
+			productReference = DC39DF5A2071FE0100B34F13 /* MotionCollectorWatch.app */;
 			productType = "com.apple.product-type.application.watchapp2";
 		};
-		DCBBE53220712E7D004B48FF /* MotionCollectorWatch Extension */ = {
+		DC39DF652071FE0200B34F13 /* MotionCollectorWatch Extension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DCBBE54920712E7D004B48FF /* Build configuration list for PBXNativeTarget "MotionCollectorWatch Extension" */;
+			buildConfigurationList = DC39DF7E2071FE0200B34F13 /* Build configuration list for PBXNativeTarget "MotionCollectorWatch Extension" */;
 			buildPhases = (
-				DCBBE52F20712E7D004B48FF /* Sources */,
-				DCBBE53020712E7D004B48FF /* Frameworks */,
-				DCBBE53120712E7D004B48FF /* Resources */,
+				DC39DF622071FE0200B34F13 /* Sources */,
+				DC39DF632071FE0200B34F13 /* Frameworks */,
+				DC39DF642071FE0200B34F13 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -300,8 +284,27 @@
 			);
 			name = "MotionCollectorWatch Extension";
 			productName = "MotionCollectorWatch Extension";
-			productReference = DCBBE53320712E7D004B48FF /* MotionCollectorWatch Extension.appex */;
+			productReference = DC39DF662071FE0200B34F13 /* MotionCollectorWatch Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
+		};
+		DCB7BBEC203A5688001F1E9F /* MotionCollector */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DCB7BC02203A5688001F1E9F /* Build configuration list for PBXNativeTarget "MotionCollector" */;
+			buildPhases = (
+				DCB7BBE9203A5688001F1E9F /* Sources */,
+				DCB7BBEA203A5688001F1E9F /* Frameworks */,
+				DCB7BBEB203A5688001F1E9F /* Resources */,
+				DC39DF812071FE0200B34F13 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DC39DF782071FE0200B34F13 /* PBXTargetDependency */,
+			);
+			name = MotionCollector;
+			productName = DataCollector;
+			productReference = DCB7BBED203A5688001F1E9F /* MotionCollector.app */;
+			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
@@ -313,15 +316,15 @@
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Aleksei Degtiarev";
 				TargetAttributes = {
+					DC39DF592071FE0100B34F13 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					DC39DF652071FE0200B34F13 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
 					DCB7BBEC203A5688001F1E9F = {
-						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
-					};
-					DCBBE52620712E7C004B48FF = {
-						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
-					};
-					DCBBE53220712E7D004B48FF = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 					};
@@ -341,13 +344,30 @@
 			projectRoot = "";
 			targets = (
 				DCB7BBEC203A5688001F1E9F /* MotionCollector */,
-				DCBBE52620712E7C004B48FF /* MotionCollectorWatch */,
-				DCBBE53220712E7D004B48FF /* MotionCollectorWatch Extension */,
+				DC39DF592071FE0100B34F13 /* MotionCollectorWatch */,
+				DC39DF652071FE0200B34F13 /* MotionCollectorWatch Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		DC39DF582071FE0100B34F13 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC39DF602071FE0200B34F13 /* Assets.xcassets in Resources */,
+				DC39DF5E2071FE0200B34F13 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC39DF642071FE0200B34F13 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC39DF742071FE0200B34F13 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DCB7BBEB203A5688001F1E9F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -358,26 +378,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DCBBE52520712E7C004B48FF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DCBBE52D20712E7C004B48FF /* Assets.xcassets in Resources */,
-				DCBBE52B20712E7C004B48FF /* Interface.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DCBBE53120712E7D004B48FF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DCBBE53F20712E7D004B48FF /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		DC39DF622071FE0200B34F13 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC39DF702071FE0200B34F13 /* NotificationController.swift in Sources */,
+				DC39DF722071FE0200B34F13 /* ComplicationController.swift in Sources */,
+				DC39DF6E2071FE0200B34F13 /* ExtensionDelegate.swift in Sources */,
+				DC39DF6C2071FE0200B34F13 /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DCB7BBE9203A5688001F1E9F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -403,32 +417,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DCBBE52F20712E7D004B48FF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DCBBE53D20712E7D004B48FF /* NotificationController.swift in Sources */,
-				DCBBE53B20712E7D004B48FF /* ExtensionDelegate.swift in Sources */,
-				DCBBE53920712E7D004B48FF /* InterfaceController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		DCBBE53620712E7D004B48FF /* PBXTargetDependency */ = {
+		DC39DF692071FE0200B34F13 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DCBBE53220712E7D004B48FF /* MotionCollectorWatch Extension */;
-			targetProxy = DCBBE53520712E7D004B48FF /* PBXContainerItemProxy */;
+			target = DC39DF652071FE0200B34F13 /* MotionCollectorWatch Extension */;
+			targetProxy = DC39DF682071FE0200B34F13 /* PBXContainerItemProxy */;
 		};
-		DCBBE54320712E7D004B48FF /* PBXTargetDependency */ = {
+		DC39DF782071FE0200B34F13 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DCBBE52620712E7C004B48FF /* MotionCollectorWatch */;
-			targetProxy = DCBBE54220712E7D004B48FF /* PBXContainerItemProxy */;
+			target = DC39DF592071FE0100B34F13 /* MotionCollectorWatch */;
+			targetProxy = DC39DF772071FE0200B34F13 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		DC39DF5C2071FE0200B34F13 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DC39DF5D2071FE0200B34F13 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
 		DCB7BBF4203A5688001F1E9F /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -445,17 +457,83 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
-		DCBBE52920712E7C004B48FF /* Interface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DCBBE52A20712E7C004B48FF /* Base */,
-			);
-			name = Interface.storyboard;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		DC39DF7A2071FE0200B34F13 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z8822C26BQ;
+				IBSC_MODULE = MotionCollectorWatch_Extension;
+				INFOPLIST_FILE = MotionCollectorWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = delexa.MotionCollector.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+			};
+			name = Debug;
+		};
+		DC39DF7B2071FE0200B34F13 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z8822C26BQ;
+				IBSC_MODULE = MotionCollectorWatch_Extension;
+				INFOPLIST_FILE = MotionCollectorWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = delexa.MotionCollector.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+			};
+			name = Release;
+		};
+		DC39DF7C2071FE0200B34F13 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z8822C26BQ;
+				INFOPLIST_FILE = "MotionCollectorWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = delexa.MotionCollector.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+			};
+			name = Debug;
+		};
+		DC39DF7D2071FE0200B34F13 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z8822C26BQ;
+				INFOPLIST_FILE = "MotionCollectorWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = delexa.MotionCollector.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+			};
+			name = Release;
+		};
 		DCB7BC00203A5688001F1E9F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -593,83 +671,27 @@
 			};
 			name = Release;
 		};
-		DCBBE54520712E7D004B48FF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z8822C26BQ;
-				IBSC_MODULE = MotionCollectorWatch_Extension;
-				INFOPLIST_FILE = MotionCollectorWatch/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = delexa.MotionCollector.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.2;
-			};
-			name = Debug;
-		};
-		DCBBE54620712E7D004B48FF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z8822C26BQ;
-				IBSC_MODULE = MotionCollectorWatch_Extension;
-				INFOPLIST_FILE = MotionCollectorWatch/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = delexa.MotionCollector.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.2;
-			};
-			name = Release;
-		};
-		DCBBE54720712E7D004B48FF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z8822C26BQ;
-				INFOPLIST_FILE = "MotionCollectorWatch Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = delexa.MotionCollector.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.2;
-			};
-			name = Debug;
-		};
-		DCBBE54820712E7D004B48FF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z8822C26BQ;
-				INFOPLIST_FILE = "MotionCollectorWatch Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = delexa.MotionCollector.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.2;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		DC39DF7E2071FE0200B34F13 /* Build configuration list for PBXNativeTarget "MotionCollectorWatch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC39DF7C2071FE0200B34F13 /* Debug */,
+				DC39DF7D2071FE0200B34F13 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC39DF802071FE0200B34F13 /* Build configuration list for PBXNativeTarget "MotionCollectorWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC39DF7A2071FE0200B34F13 /* Debug */,
+				DC39DF7B2071FE0200B34F13 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		DCB7BBE8203A5688001F1E9F /* Build configuration list for PBXProject "MotionCollector" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -684,24 +706,6 @@
 			buildConfigurations = (
 				DCB7BC03203A5688001F1E9F /* Debug */,
 				DCB7BC04203A5688001F1E9F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DCBBE54920712E7D004B48FF /* Build configuration list for PBXNativeTarget "MotionCollectorWatch Extension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DCBBE54720712E7D004B48FF /* Debug */,
-				DCBBE54820712E7D004B48FF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DCBBE54B20712E7D004B48FF /* Build configuration list for PBXNativeTarget "MotionCollectorWatch" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DCBBE54520712E7D004B48FF /* Debug */,
-				DCBBE54620712E7D004B48FF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
