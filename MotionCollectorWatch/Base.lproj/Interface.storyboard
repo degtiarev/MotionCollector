@@ -1,16 +1,125 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14109" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch42" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="11055"/>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14031"/>
     </dependencies>
     <scenes>
-        <!--Interface Controller-->
+        <!--Main-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModuleProvider="target"/>
+                <controller identifier="Main" title="Main" id="AgC-eL-Hgc" customClass="MainIC" customModule="MotionCollectorWatch_Extension">
+                    <items>
+                        <timer width="1" height="0.29999999999999999" alignment="center" textAlignment="center" id="UGD-RB-8yI">
+                            <fontDescription key="font" type="system" pointSize="35"/>
+                            <calendarUnit key="units" minute="YES" second="YES"/>
+                        </timer>
+                        <group width="1" height="0.14999999999999999" alignment="left" id="qD5-wS-eY8">
+                            <items>
+                                <label width="0.5" height="1" alignment="left" text="Rec ID" textAlignment="left" id="7Ag-Iz-9qp"/>
+                                <label width="0.5" height="1" alignment="left" text="30" textAlignment="center" id="E52-i9-HjV"/>
+                            </items>
+                        </group>
+                        <group width="1" height="0.25" alignment="left" id="zch-V6-net">
+                            <items>
+                                <label width="0.5" height="1" alignment="left" text="Rec num" textAlignment="left" id="Zk2-7b-mu2"/>
+                                <picker width="0.5" height="1" alignment="left" focusStyle="stack" id="lJN-9t-7cw"/>
+                            </items>
+                        </group>
+                        <group width="1" height="0.29999999999999999" alignment="left" id="2YU-4i-TBW">
+                            <items>
+                                <button width="0.5" height="1" alignment="left" title="Start" id="sdn-5P-cxy">
+                                    <color key="backgroundColor" red="0.35583251710000002" green="0.74969249959999995" blue="0.33435869219999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <connections>
+                                        <action selector="startButtonPressed" destination="AgC-eL-Hgc" id="Xfp-nU-PHY"/>
+                                    </connections>
+                                </button>
+                                <button width="0.5" height="1" alignment="left" title="Stop" id="aDB-dP-yUV">
+                                    <color key="backgroundColor" red="1" green="0.34509803919999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <connections>
+                                        <action selector="stopButtonPressed" destination="AgC-eL-Hgc" id="4bR-bg-Odi"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="recIDLabel" destination="E52-i9-HjV" id="8kP-nE-s1c"/>
+                        <outlet property="recNumberPicker" destination="lJN-9t-7cw" id="M15-bb-7cc"/>
+                        <outlet property="startButton" destination="sdn-5P-cxy" id="XWc-o6-uKW"/>
+                        <outlet property="stopButton" destination="aDB-dP-yUV" id="NTM-nH-QDa"/>
+                        <outlet property="timer" destination="UGD-RB-8yI" id="Cqm-0a-qu6"/>
+                        <segue destination="xeh-NV-k0d" kind="relationship" relationship="nextPage" id="nkr-WI-4uC"/>
+                    </connections>
+                </controller>
             </objects>
-            <point key="canvasLocation" x="220" y="345"/>
+            <point key="canvasLocation" x="220" y="340"/>
+        </scene>
+        <!--Records-->
+        <scene sceneID="yBM-Zs-yU2">
+            <objects>
+                <controller identifier="Records" title="Records" id="xeh-NV-k0d" customClass="RecordsIC" customModule="MotionCollectorWatch_Extension">
+                    <items>
+                        <table alignment="left" id="70U-gO-bn4">
+                            <items>
+                                <tableRow id="6I3-3Y-mZj" customClass="SessionsRow" customModule="MotionCollectorWatch_Extension">
+                                    <group key="rootItem" width="1" height="44" alignment="left" layout="vertical" spacing="0.0" id="BN2-2c-rdj">
+                                        <items>
+                                            <group width="1" height="0.59999999999999998" alignment="left" id="ElU-RQ-ogD">
+                                                <items>
+                                                    <label width="0.20000000000000001" height="1" alignment="left" text="0" textAlignment="left" numberOfLines="0" id="1JL-gN-ps5">
+                                                        <color key="textColor" red="0.28235294119999998" green="0.75294117650000003" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="font" type="system" pointSize="16"/>
+                                                    </label>
+                                                    <label width="0.40000000000000002" height="1" alignment="left" text="ID: 10" textAlignment="center" numberOfLines="0" id="B8c-cM-jNX">
+                                                        <color key="textColor" red="0.24972663040000001" green="0.75144800629999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="font" type="system" pointSize="16"/>
+                                                    </label>
+                                                    <label width="0.40000000000000002" height="1" alignment="left" text="00:21" textAlignment="right" numberOfLines="0" id="2ia-nl-L3x">
+                                                        <color key="textColor" red="0.24972663040000001" green="0.75144800629999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="font" type="system" pointSize="16"/>
+                                                    </label>
+                                                </items>
+                                            </group>
+                                            <group width="1" height="0.40000000000000002" alignment="left" id="BRN-BT-h4s">
+                                                <items>
+                                                    <label width="1" height="1" alignment="left" text="06.04.2018 17.31.01" minimumScaleFactor="0.5" id="H03-xh-joU">
+                                                        <color key="textColor" red="0.19295737930000001" green="1" blue="0.25267244210000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="font" type="system" pointSize="16"/>
+                                                    </label>
+                                                </items>
+                                            </group>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="dateSessionLabel" destination="H03-xh-joU" id="a6r-jC-6c1"/>
+                                        <outlet property="durationLabel" destination="2ia-nl-L3x" id="vsH-1p-Hkl"/>
+                                        <outlet property="idRecordLabel" destination="B8c-cM-jNX" id="kcL-2s-7kl"/>
+                                        <outlet property="idSessionLabel" destination="1JL-gN-ps5" id="vUe-Bl-xp6"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                        <button width="1" alignment="left" title="Send data" id="rkw-pK-QTZ">
+                            <color key="backgroundColor" red="0.28235294119999998" green="0.75294117650000003" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </button>
+                        <button width="1" alignment="left" title="Clear data" id="FAV-fz-Puh">
+                            <color key="backgroundColor" red="1" green="0.34509803919999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="clearDataPressed" destination="xeh-NV-k0d" id="j43-kJ-sX8"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="table" destination="70U-gO-bn4" id="or8-ab-5Gj"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="476" y="340"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">
@@ -31,7 +140,7 @@
         <!--Notification Controller-->
         <scene sceneID="ZPc-GJ-vnh">
             <objects>
-                <controller id="4sK-HA-Art" customClass="NotificationController" customModuleProvider="target"/>
+                <controller id="4sK-HA-Art" customClass="NotificationController" customModule="MotionCollectorWatch" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="468" y="643"/>
         </scene>

@@ -12,12 +12,14 @@
 		DC39DF5E2071FE0200B34F13 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC39DF5C2071FE0200B34F13 /* Interface.storyboard */; };
 		DC39DF602071FE0200B34F13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC39DF5F2071FE0200B34F13 /* Assets.xcassets */; };
 		DC39DF672071FE0200B34F13 /* MotionCollectorWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DC39DF662071FE0200B34F13 /* MotionCollectorWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		DC39DF6C2071FE0200B34F13 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC39DF6B2071FE0200B34F13 /* InterfaceController.swift */; };
+		DC39DF6C2071FE0200B34F13 /* MainIC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC39DF6B2071FE0200B34F13 /* MainIC.swift */; };
 		DC39DF6E2071FE0200B34F13 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC39DF6D2071FE0200B34F13 /* ExtensionDelegate.swift */; };
 		DC39DF702071FE0200B34F13 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC39DF6F2071FE0200B34F13 /* NotificationController.swift */; };
 		DC39DF722071FE0200B34F13 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC39DF712071FE0200B34F13 /* ComplicationController.swift */; };
 		DC39DF742071FE0200B34F13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC39DF732071FE0200B34F13 /* Assets.xcassets */; };
 		DC39DF792071FE0200B34F13 /* MotionCollectorWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = DC39DF5A2071FE0100B34F13 /* MotionCollectorWatch.app */; };
+		DC5A986E2077D592004A373C /* RecordsIC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5A986D2077D592004A373C /* RecordsIC.swift */; };
+		DC5A98702077D63C004A373C /* SessionsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5A986F2077D63C004A373C /* SessionsRow.swift */; };
 		DC972306204150C0002047EF /* ItemSessionSessionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC972305204150C0002047EF /* ItemSessionSessionCell.swift */; };
 		DCA52D7F2046A7F00011AA74 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA52D7E2046A7F00011AA74 /* RoundButton.swift */; };
 		DCB7BBF1203A5688001F1E9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB7BBF0203A5688001F1E9F /* AppDelegate.swift */; };
@@ -89,13 +91,15 @@
 		DC39DF5F2071FE0200B34F13 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC39DF612071FE0200B34F13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC39DF662071FE0200B34F13 /* MotionCollectorWatch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "MotionCollectorWatch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DC39DF6B2071FE0200B34F13 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		DC39DF6B2071FE0200B34F13 /* MainIC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainIC.swift; sourceTree = "<group>"; };
 		DC39DF6D2071FE0200B34F13 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		DC39DF6F2071FE0200B34F13 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		DC39DF712071FE0200B34F13 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		DC39DF732071FE0200B34F13 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC39DF752071FE0200B34F13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC39DF762071FE0200B34F13 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		DC5A986D2077D592004A373C /* RecordsIC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsIC.swift; sourceTree = "<group>"; };
+		DC5A986F2077D63C004A373C /* SessionsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionsRow.swift; sourceTree = "<group>"; };
 		DC972305204150C0002047EF /* ItemSessionSessionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSessionSessionCell.swift; sourceTree = "<group>"; };
 		DCA52D7E2046A7F00011AA74 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		DCB7BBED203A5688001F1E9F /* MotionCollector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MotionCollector.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,7 +154,9 @@
 		DC39DF6A2071FE0200B34F13 /* MotionCollectorWatch Extension */ = {
 			isa = PBXGroup;
 			children = (
-				DC39DF6B2071FE0200B34F13 /* InterfaceController.swift */,
+				DC39DF6B2071FE0200B34F13 /* MainIC.swift */,
+				DC5A986D2077D592004A373C /* RecordsIC.swift */,
+				DC5A986F2077D63C004A373C /* SessionsRow.swift */,
 				DC39DF6D2071FE0200B34F13 /* ExtensionDelegate.swift */,
 				DC39DF6F2071FE0200B34F13 /* NotificationController.swift */,
 				DC39DF712071FE0200B34F13 /* ComplicationController.swift */,
@@ -313,7 +319,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Aleksei Degtiarev";
 				TargetAttributes = {
 					DC39DF592071FE0100B34F13 = {
@@ -386,9 +392,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC39DF702071FE0200B34F13 /* NotificationController.swift in Sources */,
+				DC5A986E2077D592004A373C /* RecordsIC.swift in Sources */,
 				DC39DF722071FE0200B34F13 /* ComplicationController.swift in Sources */,
 				DC39DF6E2071FE0200B34F13 /* ExtensionDelegate.swift in Sources */,
-				DC39DF6C2071FE0200B34F13 /* InterfaceController.swift in Sources */,
+				DC39DF6C2071FE0200B34F13 /* MainIC.swift in Sources */,
+				DC5A98702077D63C004A373C /* SessionsRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,16 +474,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z8822C26BQ;
+				DEVELOPMENT_TEAM = F2X9TX4X64;
 				IBSC_MODULE = MotionCollectorWatch_Extension;
 				INFOPLIST_FILE = MotionCollectorWatch/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = delexa.MotionCollector.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = delexa1.MotionCollector.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+				WATCHOS_DEPLOYMENT_TARGET = 4.3;
 			};
 			name = Debug;
 		};
@@ -485,16 +493,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z8822C26BQ;
+				DEVELOPMENT_TEAM = F2X9TX4X64;
 				IBSC_MODULE = MotionCollectorWatch_Extension;
 				INFOPLIST_FILE = MotionCollectorWatch/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = delexa.MotionCollector.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = delexa1.MotionCollector.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+				WATCHOS_DEPLOYMENT_TARGET = 4.3;
 			};
 			name = Release;
 		};
@@ -503,16 +511,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z8822C26BQ;
+				DEVELOPMENT_TEAM = F2X9TX4X64;
 				INFOPLIST_FILE = "MotionCollectorWatch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = delexa.MotionCollector.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = delexa1.MotionCollector.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+				WATCHOS_DEPLOYMENT_TARGET = 4.3;
 			};
 			name = Debug;
 		};
@@ -521,16 +529,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z8822C26BQ;
+				DEVELOPMENT_TEAM = F2X9TX4X64;
 				INFOPLIST_FILE = "MotionCollectorWatch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = delexa.MotionCollector.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = delexa1.MotionCollector.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.2;
+				WATCHOS_DEPLOYMENT_TARGET = 4.3;
 			};
 			name = Release;
 		};
@@ -548,6 +556,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -555,6 +564,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -582,7 +592,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -605,6 +615,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -612,6 +623,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -633,7 +645,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -646,10 +658,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z8822C26BQ;
+				DEVELOPMENT_TEAM = F2X9TX4X64;
 				INFOPLIST_FILE = "$(SRCROOT)/MotionCollector/Sources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = delexa.MotionCollector;
+				PRODUCT_BUNDLE_IDENTIFIER = delexa1.MotionCollector;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -661,10 +673,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z8822C26BQ;
+				DEVELOPMENT_TEAM = F2X9TX4X64;
 				INFOPLIST_FILE = "$(SRCROOT)/MotionCollector/Sources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = delexa.MotionCollector;
+				PRODUCT_BUNDLE_IDENTIFIER = delexa1.MotionCollector;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -26,7 +26,7 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>WKCompanionAppBundleIdentifier</key>
-	<string>delexa.MotionCollector</string>
+	<string>delexa1.MotionCollector</string>
 	<key>WKWatchKitApp</key>
 	<true/>
 </dict>
