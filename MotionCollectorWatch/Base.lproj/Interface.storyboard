@@ -53,11 +53,22 @@
                         <outlet property="startButton" destination="sdn-5P-cxy" id="XWc-o6-uKW"/>
                         <outlet property="stopButton" destination="aDB-dP-yUV" id="NTM-nH-QDa"/>
                         <outlet property="timer" destination="UGD-RB-8yI" id="Cqm-0a-qu6"/>
-                        <segue destination="xeh-NV-k0d" kind="relationship" relationship="nextPage" id="nkr-WI-4uC"/>
+                        <segue destination="NqB-O1-Vee" kind="relationship" relationship="nextPage" id="MXp-Vq-Xvf"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="220" y="340"/>
+            <point key="canvasLocation" x="171" y="312"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="R4x-2Y-fuD">
+            <objects>
+                <controller identifier="Settings" title="Settings" id="NqB-O1-Vee">
+                    <items>
+                        <switch width="1" alignment="left" title="Record also data from phone" id="jfE-cI-0CH"/>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="453" y="312"/>
         </scene>
         <!--Records-->
         <scene sceneID="yBM-Zs-yU2">
@@ -119,7 +130,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="476" y="340"/>
+            <point key="canvasLocation" x="700" y="312"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">

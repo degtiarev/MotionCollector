@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		DC119ECE204ABFA00035ED8F /* SensorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC119ECD204ABFA00035ED8F /* SensorOutput.swift */; };
 		DC23343E204386E900232A8A /* DataCollector.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC23343C204386E900232A8A /* DataCollector.xcdatamodeld */; };
+		DC23B877207BDE5600CC813F /* SensorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC119ECD204ABFA00035ED8F /* SensorOutput.swift */; };
 		DC39DF5E2071FE0200B34F13 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC39DF5C2071FE0200B34F13 /* Interface.storyboard */; };
 		DC39DF602071FE0200B34F13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC39DF5F2071FE0200B34F13 /* Assets.xcassets */; };
 		DC39DF672071FE0200B34F13 /* MotionCollectorWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DC39DF662071FE0200B34F13 /* MotionCollectorWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -396,6 +397,7 @@
 				DC39DF722071FE0200B34F13 /* ComplicationController.swift in Sources */,
 				DC39DF6E2071FE0200B34F13 /* ExtensionDelegate.swift in Sources */,
 				DC39DF6C2071FE0200B34F13 /* MainIC.swift in Sources */,
+				DC23B877207BDE5600CC813F /* SensorOutput.swift in Sources */,
 				DC5A98702077D63C004A373C /* SessionsRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
