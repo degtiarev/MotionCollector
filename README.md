@@ -6,3 +6,8 @@ iOS app for collecting data from internal motion sensors (gyroscope, magnetomete
   <img src="images/screenshot1.png" width="300">
   <img src="images/screenshot2.png" width="300">
 </p>
+
+<p align="left">
+  <img src="images/screenshot3.png" width="150">
+  <img src="images/screenshot4.png" width="150">
+</p>
