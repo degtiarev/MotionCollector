@@ -10,9 +10,10 @@ import WatchKit
 import Foundation
 import CoreMotion
 import HealthKit
+import WatchConnectivity
 
 
-class MainIC: WKInterfaceController {
+class MainIC: WKInterfaceController, WCSessionDelegate {
     
     // Statuses
     enum Status {
@@ -89,6 +90,14 @@ class MainIC: WKInterfaceController {
         queue.name = "MotionManagerQueue"
         
         status = .waiting
+        
+        
+        // Configure WCSessionDelegate objects
+        if WCSession.isSupported() {
+            let session = WCSession.default
+            session.delegate = self
+            session.activate()
+        }
     }
     
     override func willActivate() {
@@ -258,6 +267,13 @@ class MainIC: WKInterfaceController {
         //        currentSession = nil
         //        nextSessionid += 1
         
+        let session = WCSession.default
+        if session.activationState == .activated {
+            let data = ["text": "User info from the phone"]
+            
+            session.transferUserInfo(data)
+        }
+        
         status = .waiting
         
     }
@@ -284,4 +300,22 @@ class MainIC: WKInterfaceController {
         recordDataFromPhoneSwitch.setEnabled(false)
         startGettingData()
     }
+    
+    
+    
+    // MARK - Work with WCSessionDelegate
+    
+    func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
+//        DispatchQueue.main.async {
+//            
+//            if let text = userInfo["text"] as? String {
+//                print(text)
+//            }
+//        }
+    }
+    
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+    
+    }
+    
 }

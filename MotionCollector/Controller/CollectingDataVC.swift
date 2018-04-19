@@ -9,9 +9,11 @@
 import UIKit
 import CoreMotion
 import CoreData
+import WatchConnectivity
 
 
-class CollectingDataVC: UIViewController, SettingsTableVCDelegate, RecordIDVCDelegate {
+class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDelegate, RecordIDVCDelegate {
+    
     
     // Statuses
     enum Status {
@@ -82,6 +84,13 @@ class CollectingDataVC: UIViewController, SettingsTableVCDelegate, RecordIDVCDel
         startGettingData()
         
         status = .waiting
+        
+        // Prepare for session
+        if WCSession.isSupported() {
+            let session = WCSession.default
+            session.delegate = self
+            session.activate()
+        }
         
     }
     
@@ -565,6 +574,34 @@ class CollectingDataVC: UIViewController, SettingsTableVCDelegate, RecordIDVCDel
     }
     
     
+    
+    
+    // MARK - Work with WCSessionDelegate
+    func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
+        DispatchQueue.main.async {
+            
+            if let text = userInfo["text"] as? String {
+               print(text)
+            }
+        }
+    }
+    
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        DispatchQueue.main.sync {
+            if activationState == .activated {
+                if session.isWatchAppInstalled {
+                    print ("Watch app is installed")
+                }
+            }
+        }
+    }
+    
+    func sessionDidBecomeInactive(_ session: WCSession) {
+        
+    }
+    
+    func sessionDidDeactivate(_ session: WCSession) {
+    }
     
     
     
