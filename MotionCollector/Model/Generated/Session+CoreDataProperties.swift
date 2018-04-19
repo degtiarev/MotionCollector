@@ -2,7 +2,7 @@
 //  Session+CoreDataProperties.swift
 //  MotionCollector
 //
-//  Created by Aleksei Degtiarev on 05/03/2018.
+//  Created by Aleksei Degtiarev on 19/04/2018.
 //  Copyright © 2018 Aleksei Degtiarev. All rights reserved.
 //
 //
@@ -19,9 +19,10 @@ extension Session {
 
     @NSManaged public var date: NSDate?
     @NSManaged public var duration: String?
-    @NSManaged public var id: Int32
-    @NSManaged public var isWalking: Int32
     @NSManaged public var frequency: Int32
+    @NSManaged public var id: Int32
+    @NSManaged public var recordID: Int32
+    @NSManaged public var isWithWatchData: Bool
     @NSManaged public var toSensorData: NSSet?
 
 }

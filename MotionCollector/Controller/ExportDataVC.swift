@@ -202,7 +202,7 @@ class ExportDataVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 let sessionDate = "\(df.string(from: session.date! as Date))"
                 let sessionDuration = "\(session.duration!)"
                 let sessionFrequency = "\(session.frequency)"
-                let isWalking = "\(session.isWalking)"
+                let isWalking = "\(session.recordID)"
                 let sessionInfoString = "\(sessionID),\(sessionDate),\(sessionDuration),\(sessionFrequency),\(isWalking),"
                 
                 var SensorOutputs = [SensorOutput]()

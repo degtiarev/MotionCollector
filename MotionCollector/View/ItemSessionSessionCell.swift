@@ -29,7 +29,7 @@ class ItemSessionCell: UITableViewCell {
         dateSessionLabel.text = myString
         durationLabel.text = session.duration
         periodLabel.text = "\(session.frequency)"
-        isWalkingLabel.text = "\(session.isWalking)"
+        isWalkingLabel.text = "\(session.recordID)"
     }
     
 }

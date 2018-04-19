@@ -236,7 +236,7 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
         currentSession?.id = Int32(nextSessionid)
         currentSession?.date = NSDate()
         currentSession?.frequency = Int32(currentFrequency)
-        currentSession?.isWalking = Int32(recordID)
+        currentSession?.recordID = Int32(recordID)
     }
     
     
