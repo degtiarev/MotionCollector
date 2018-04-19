@@ -220,62 +220,22 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
     
     @IBAction func stopButtonPressed() {
         
-        //        // Finish session recording
-        //        timer.invalidate()
-        //
-        //
-        //        currentSession?.id = Int32(nextSessionid)
-        //        currentSession?.date = NSDate()
-        //        currentSession?.frequency = Int32(currentFrequency)
-        //        currentSession?.isWalking = Int32(recordID)
-        //
-        //
-        //        currentSession?.duration = recordTime
-        //
-        //        for sensorOutput in sensorOutputs {
-        //
-        //            let characteristicGyro = Characteristic (context:context)
-        //            characteristicGyro.x = sensorOutput.gyroX!
-        //            characteristicGyro.y = sensorOutput.gyroY!
-        //            characteristicGyro.z = sensorOutput.gyroZ!
-        //            characteristicGyro.toCharacteristicName = self.characteristicsNames[1]
-        //
-        //            let characteristicAcc = Characteristic (context:context)
-        //            characteristicAcc.x = sensorOutput.accX!
-        //            characteristicAcc.y = sensorOutput.accY!
-        //            characteristicAcc.z = sensorOutput.accZ!
-        //            characteristicAcc.toCharacteristicName = self.characteristicsNames[0]
-        //
-        //            let characteristicMag = Characteristic (context:context)
-        //            characteristicMag.x = sensorOutput.magX!
-        //            characteristicMag.y = sensorOutput.magY!
-        //            characteristicMag.z = sensorOutput.magZ!
-        //            characteristicMag.toCharacteristicName = self.characteristicsNames[2]
-        //
-        //
-        //            let sensorData = SensorData(context: context)
-        //            sensorData.timeStamp = sensorOutput.timeStamp
-        //            sensorData.addToToCharacteristic(characteristicGyro)
-        //            sensorData.addToToCharacteristic(characteristicAcc)
-        //            sensorData.addToToCharacteristic(characteristicMag)
-        //            self.currentSession?.addToToSensorData(sensorData)
-        //
-        //        }
-        //
-        //        sensorOutputs.removeAll()
-        //
-        //        currentSession = nil
-        //        nextSessionid += 1
-        
         let session = WCSession.default
         if session.activationState == .activated {
-            let data = ["text": "User info from the phone"]
+            
+            var data = [String: Any]()
+            data["SessionID"] = nextSessionid
+            data["Date"] = currentSessionDate
+            data["Frequency"] = currentFrequency
+            data["RecordID"] = recordID
+            data["Data"] = sensorOutputs
+            data["Duration"] = recordTime
             
             session.transferUserInfo(data)
         }
-        
+        sensorOutputs.removeAll()
+        nextSessionid += 1
         status = .waiting
-        
     }
     
     @IBAction func recordDataFromPhoneSwitchChanged(_ value: Bool) {
@@ -296,6 +256,7 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
     
     func recording() {
         recNumberPicker.setEnabled(false)
+        timer.setDate(Date(timeIntervalSinceNow: 0.0))
         timer.start()
         recordDataFromPhoneSwitch.setEnabled(false)
         startGettingData()
@@ -306,16 +267,16 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
     // MARK - Work with WCSessionDelegate
     
     func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
-//        DispatchQueue.main.async {
-//            
-//            if let text = userInfo["text"] as? String {
-//                print(text)
-//            }
-//        }
+        //        DispatchQueue.main.async {
+        //
+        //            if let text = userInfo["text"] as? String {
+        //                print(text)
+        //            }
+        //        }
     }
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-    
+        
     }
     
 }

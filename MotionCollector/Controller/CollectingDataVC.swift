@@ -521,9 +521,11 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
     func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
         DispatchQueue.main.async {
             
-            if let text = userInfo["text"] as? String {
-                print(text)
+            if let frequency = userInfo["Frequency"] as? Int {
+                print("\(frequency)")
             }
+
+            
         }
     }
     
