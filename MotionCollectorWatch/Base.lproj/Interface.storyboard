@@ -9,10 +9,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14031"/>
     </dependencies>
     <scenes>
-        <!--Main-->
+        <!--DataCollector-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller identifier="Main" title="Main" id="AgC-eL-Hgc" customClass="MainIC" customModule="MotionCollectorWatch_Extension">
+                <controller identifier="Main" title="DataCollector" id="AgC-eL-Hgc" customClass="MainIC" customModule="MotionCollectorWatch_Extension">
                     <items>
                         <timer width="1" height="0.29999999999999999" alignment="center" textAlignment="center" id="UGD-RB-8yI">
                             <fontDescription key="font" type="system" pointSize="35"/>
