@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="szK-Gt-Da7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="szK-Gt-Da7">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Courier.ttc">
-            <string>Courier</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Export as csv-->
         <scene sceneID="tg4-HL-fFT">
@@ -84,6 +79,25 @@
                                                                                 </label>
                                                                             </subviews>
                                                                         </stackView>
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2ak-U3-cev">
+                                                                            <rect key="frame" x="137.5" y="0.0" width="0.0" height="20.5"/>
+                                                                            <subviews>
+                                                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iPhone" translatesAutoresizingMaskIntoConstraints="NO" id="O09-wZ-j9l">
+                                                                                    <rect key="frame" x="-150.5" y="-33.5" width="20" height="20.5"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="width" constant="20" id="5sx-P1-xxo"/>
+                                                                                        <constraint firstAttribute="height" constant="20.5" id="utH-BI-Qs2"/>
+                                                                                    </constraints>
+                                                                                </imageView>
+                                                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppleWatch" translatesAutoresizingMaskIntoConstraints="NO" id="o4Z-RI-x8h">
+                                                                                    <rect key="frame" x="-150.5" y="-33.5" width="20" height="20.5"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="width" constant="20" id="lKc-dU-Dxx"/>
+                                                                                        <constraint firstAttribute="height" constant="20.5" id="sh0-Ym-CdP"/>
+                                                                                    </constraints>
+                                                                                </imageView>
+                                                                            </subviews>
+                                                                        </stackView>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Mbp-To-bot">
                                                                             <rect key="frame" x="184" y="0.0" width="110" height="20.5"/>
                                                                             <subviews>
@@ -125,8 +139,10 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="appleWatchIcon" destination="o4Z-RI-x8h" id="PcG-xR-jG4"/>
                                             <outlet property="dateSessionLabel" destination="Q8L-mP-7fh" id="zgm-69-ZQF"/>
                                             <outlet property="durationLabel" destination="aYZ-Kt-dBT" id="qSm-H1-JFc"/>
+                                            <outlet property="iPhoneIcon" destination="O09-wZ-j9l" id="eJ2-1v-hDv"/>
                                             <outlet property="idSessionLabel" destination="xyL-Xr-NRN" id="YYA-yG-QgY"/>
                                             <outlet property="isWalkingLabel" destination="3vu-bN-qlD" id="h2M-Bx-7HM"/>
                                             <outlet property="periodLabel" destination="slI-E4-avu" id="R1K-D1-za3"/>
@@ -162,7 +178,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zPJ-Sa-nz2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1650.7246376811595" y="900.81521739130437"/>
+            <point key="canvasLocation" x="1567" y="913"/>
         </scene>
         <!--Collecting data-->
         <scene sceneID="C8A-Sg-tVm">
@@ -261,7 +277,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D5C-WJ-gws" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1650" y="223.94366197183098"/>
+            <point key="canvasLocation" x="1567" y="223"/>
         </scene>
         <!--Settings TableVC-->
         <scene sceneID="4PG-qt-ouz">
@@ -424,7 +440,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZBp-ZC-oRP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2612" y="29"/>
+            <point key="canvasLocation" x="2047" y="54"/>
         </scene>
         <!--RecordIDVC-->
         <scene sceneID="JiW-EX-sll">
@@ -454,6 +470,7 @@
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="JEz-9k-2E6" secondAttribute="trailing" constant="264" id="L65-Kv-rfX"/>
                                         <constraint firstItem="JEz-9k-2E6" firstAttribute="centerY" secondItem="uPe-pc-UeR" secondAttribute="centerY" id="bPq-EO-mze"/>
                                         <constraint firstItem="JEz-9k-2E6" firstAttribute="leading" secondItem="uPe-pc-UeR" secondAttribute="leading" constant="16" id="c1j-jh-WWy"/>
                                     </constraints>
@@ -471,7 +488,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zre-Xy-7eq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2536.875" y="643.30985915492954"/>
+            <point key="canvasLocation" x="2047" y="654"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Act-GJ-ko4">
@@ -489,7 +506,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eX8-25-V1y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-199" y="328"/>
+            <point key="canvasLocation" x="628" y="537"/>
         </scene>
         <!--Collecting data-->
         <scene sceneID="Mbi-Bf-RJt">
@@ -508,7 +525,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bWs-eJ-kDO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="801.60000000000002" y="235.68215892053973"/>
+            <point key="canvasLocation" x="1091" y="223"/>
         </scene>
         <!--Export as csv-->
         <scene sceneID="CPK-0m-oCa">
@@ -527,11 +544,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L6d-4V-5R2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="801.60000000000002" y="902.24887556221893"/>
+            <point key="canvasLocation" x="1091" y="913"/>
         </scene>
     </scenes>
     <resources>
+        <image name="AppleWatch" width="100" height="100"/>
         <image name="export_csv" width="33" height="33"/>
+        <image name="iPhone" width="100" height="100"/>
         <image name="record" width="33" height="33"/>
         <image name="sensor" width="33" height="33"/>
     </resources>

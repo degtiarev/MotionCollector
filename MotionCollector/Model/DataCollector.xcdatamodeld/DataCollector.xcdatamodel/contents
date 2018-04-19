@@ -21,8 +21,8 @@
         <attribute name="duration" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="frequency" optional="YES" attributeType="Integer 32" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="isWithWatchData" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="recordID" optional="YES" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="toSensorData" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SensorData" inverseName="toSession" inverseEntity="SensorData" syncable="YES"/>
     </entity>
     <elements>

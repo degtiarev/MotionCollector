@@ -22,7 +22,7 @@ extension Session {
     @NSManaged public var frequency: Int32
     @NSManaged public var id: Int32
     @NSManaged public var recordID: Int32
-    @NSManaged public var isWithWatchData: Bool
+    @NSManaged public var type: Int32
     @NSManaged public var toSensorData: NSSet?
 
 }

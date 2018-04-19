@@ -64,68 +64,6 @@
             </objects>
             <point key="canvasLocation" x="171" y="312"/>
         </scene>
-        <!--Records-->
-        <scene sceneID="yBM-Zs-yU2">
-            <objects>
-                <controller identifier="Records" title="Records" id="xeh-NV-k0d" customClass="RecordsIC" customModule="MotionCollectorWatch_Extension">
-                    <items>
-                        <table alignment="left" id="70U-gO-bn4">
-                            <items>
-                                <tableRow id="6I3-3Y-mZj" customClass="SessionsRow" customModule="MotionCollectorWatch_Extension">
-                                    <group key="rootItem" width="1" height="44" alignment="left" layout="vertical" spacing="0.0" id="BN2-2c-rdj">
-                                        <items>
-                                            <group width="1" height="0.59999999999999998" alignment="left" id="ElU-RQ-ogD">
-                                                <items>
-                                                    <label width="0.20000000000000001" height="1" alignment="left" text="0" textAlignment="left" numberOfLines="0" id="1JL-gN-ps5">
-                                                        <color key="textColor" red="0.28235294119999998" green="0.75294117650000003" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <fontDescription key="font" type="system" pointSize="16"/>
-                                                    </label>
-                                                    <label width="0.40000000000000002" height="1" alignment="left" text="ID: 10" textAlignment="center" numberOfLines="0" id="B8c-cM-jNX">
-                                                        <color key="textColor" red="0.24972663040000001" green="0.75144800629999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <fontDescription key="font" type="system" pointSize="16"/>
-                                                    </label>
-                                                    <label width="0.40000000000000002" height="1" alignment="left" text="00:21" textAlignment="right" numberOfLines="0" id="2ia-nl-L3x">
-                                                        <color key="textColor" red="0.24972663040000001" green="0.75144800629999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <fontDescription key="font" type="system" pointSize="16"/>
-                                                    </label>
-                                                </items>
-                                            </group>
-                                            <group width="1" height="0.40000000000000002" alignment="left" id="BRN-BT-h4s">
-                                                <items>
-                                                    <label width="1" height="1" alignment="left" text="06.04.2018 17.31.01" minimumScaleFactor="0.5" id="H03-xh-joU">
-                                                        <color key="textColor" red="0.19295737930000001" green="1" blue="0.25267244210000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <fontDescription key="font" type="system" pointSize="16"/>
-                                                    </label>
-                                                </items>
-                                            </group>
-                                        </items>
-                                    </group>
-                                    <connections>
-                                        <outlet property="dateSessionLabel" destination="H03-xh-joU" id="a6r-jC-6c1"/>
-                                        <outlet property="durationLabel" destination="2ia-nl-L3x" id="vsH-1p-Hkl"/>
-                                        <outlet property="idRecordLabel" destination="B8c-cM-jNX" id="kcL-2s-7kl"/>
-                                        <outlet property="idSessionLabel" destination="1JL-gN-ps5" id="vUe-Bl-xp6"/>
-                                    </connections>
-                                </tableRow>
-                            </items>
-                        </table>
-                        <button width="1" alignment="left" title="Send data" id="rkw-pK-QTZ">
-                            <color key="backgroundColor" red="0.28235294119999998" green="0.75294117650000003" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </button>
-                        <button width="1" alignment="left" title="Clear data" id="FAV-fz-Puh">
-                            <color key="backgroundColor" red="1" green="0.34509803919999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="clearDataPressed" destination="xeh-NV-k0d" id="j43-kJ-sX8"/>
-                            </connections>
-                        </button>
-                    </items>
-                    <connections>
-                        <outlet property="table" destination="70U-gO-bn4" id="or8-ab-5Gj"/>
-                    </connections>
-                </controller>
-            </objects>
-            <point key="canvasLocation" x="700" y="312"/>
-        </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">
             <objects>

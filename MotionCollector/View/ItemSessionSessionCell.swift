@@ -15,6 +15,8 @@ class ItemSessionCell: UITableViewCell {
     @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var periodLabel: UILabel!
     @IBOutlet weak var isWalkingLabel: UILabel!
+    @IBOutlet weak var iPhoneIcon: UIImageView!
+    @IBOutlet weak var appleWatchIcon: UIImageView!
     
     
     func configureCell (session: Session){
@@ -30,6 +32,15 @@ class ItemSessionCell: UITableViewCell {
         durationLabel.text = session.duration
         periodLabel.text = "\(session.frequency)"
         isWalkingLabel.text = "\(session.recordID)"
+        
+        if session.type == SessionType.OnlyPhone.rawValue {
+            iPhoneIcon.isHidden = false
+        } else if session.type == SessionType.OnlyWatch.rawValue {
+            appleWatchIcon.isHidden = false
+        } else if session.type == SessionType.PhoneAndWatch.rawValue {
+            iPhoneIcon.isHidden = false
+            appleWatchIcon.isHidden = false
+        }
     }
     
 }

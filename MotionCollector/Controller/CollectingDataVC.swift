@@ -57,6 +57,7 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
     var recordTime: String = ""
     var sensorOutputs = [SensorOutput]()
     var characteristicsNames  = [CharacteristicName]()
+    var sessionType: SessionType = SessionType.OnlyPhone
     
     
     // Record stopwatch
@@ -272,6 +273,7 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
             sensorData.addToToCharacteristic(characteristicGyro)
             sensorData.addToToCharacteristic(characteristicAcc)
             sensorData.addToToCharacteristic(characteristicMag)
+            
             self.currentSession?.addToToSensorData(sensorData)
             
         }
@@ -538,8 +540,10 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
                 
                 if (isAlsoRun) {
                     self.StartButtonpressed((Any).self)
+                    self.sessionType = SessionType.PhoneAndWatch
                 } else {
                     self.stopButtonPressed((Any).self)
+                     self.sessionType = SessionType.OnlyPhone
                 }
                 
                 // send back reply
