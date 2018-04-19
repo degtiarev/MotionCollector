@@ -61,7 +61,7 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
     
     // Record stopwatch
     var startTime = TimeInterval()
-    var timer = Timer()
+    var UIUpdateTimer = Timer()
     
     
     // Changing variable
@@ -71,7 +71,10 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
     
     // For motion getting
     let motion = CMMotionManager()
-    var timer1 = Timer()
+    var motionUpdateTimer = Timer()
+    
+    
+    // MARK - Starting app
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,8 +83,6 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
         
         findLastSessionId()
         addNamesOfCharacteristics()
-        
-        startGettingData()
         
         status = .waiting
         
@@ -94,6 +95,9 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
         
     }
     
+    
+    
+    // MARK - connecting with delegates
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination = segue.destination
@@ -114,7 +118,11 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
     }
     
     
+    
+    // MARK - start / stop getting motion data
+    
     func startGettingData() {
+        
         // Make sure the motion hardware is available.
         if self.motion.isAccelerometerAvailable, self.motion.isGyroAvailable, self.motion.isMagnetometerAvailable {
             
@@ -127,74 +135,60 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
             self.motion.startMagnetometerUpdates()
             
             // Configure a timer to fetch the data.
-            self.timer1 = Timer(fire: Date(), interval: (1.0/Double (currentFrequency)),
-                                repeats: true, block: { (timer1) in
-                                    // Get the motion data.
-                                    if let dataAcc = self.motion.accelerometerData, let dataMag = self.motion.magnetometerData, let dataGyro = self.motion.gyroData {
-                                        let currenTime = self.returnCurrentTime()
-                                        
-                                        let GyroX = dataGyro.rotationRate.x
-                                        let GyroY = dataGyro.rotationRate.y
-                                        let GyroZ = dataGyro.rotationRate.z
-                                        
-                                        let AccX = dataAcc.acceleration.x
-                                        let AccY = dataAcc.acceleration.y
-                                        let AccZ = dataAcc.acceleration.z
-                                        
-                                        let MagX = dataMag.magneticField.x
-                                        let MagY = dataMag.magneticField.y
-                                        let MagZ = dataMag.magneticField.z
-                                        
-                                        
-                                        print ( "Gyro: \(currenTime) \(GyroX), \(GyroY), \(GyroZ)")
-                                        print ( "Acc : \(currenTime) \(AccX), \(AccY), \(AccZ)")
-                                        print ( "Mag : \(currenTime) \(MagX), \(MagY), \(MagZ)")
-                                        
-                                        
-                                        if (self.status == .recording){
-                                            
-                                            
-                                            let sensorOutput = SensorOutput()
-                                            
-                                            sensorOutput.timeStamp = Date() as NSDate
-                                            
-                                            sensorOutput.gyroX = GyroX
-                                            sensorOutput.gyroY = GyroY
-                                            sensorOutput.gyroZ = GyroZ
-                                            
-                                            sensorOutput.accX = AccX
-                                            sensorOutput.accY = AccY
-                                            sensorOutput.accZ = AccZ
-                                            
-                                            sensorOutput.magX = MagX
-                                            sensorOutput.magY = MagY
-                                            sensorOutput.magZ = MagZ
-                                            
-                                            self.sensorOutputs.append(sensorOutput)
-                                            
-                                        } //if (self.status == .recording)
-                                        
-                                        
-                                    }
-                                    
-            })
-            
-            // Add the timer to the current run loop.
-            RunLoop.current.add(self.timer1, forMode: .defaultRunLoopMode)
-        }
+            self.motionUpdateTimer = Timer.scheduledTimer(withTimeInterval: 1.0/Double (currentFrequency), repeats: true, block: { (timer1) in
+                // Get the motion data.
+                if let dataAcc = self.motion.accelerometerData, let dataMag = self.motion.magnetometerData, let dataGyro = self.motion.gyroData {
+                    
+                    let currenTime = self.returnCurrentTime()
+                    
+                    let GyroX = dataGyro.rotationRate.x
+                    let GyroY = dataGyro.rotationRate.y
+                    let GyroZ = dataGyro.rotationRate.z
+                    
+                    let AccX = dataAcc.acceleration.x
+                    let AccY = dataAcc.acceleration.y
+                    let AccZ = dataAcc.acceleration.z
+                    
+                    let MagX = dataMag.magneticField.x
+                    let MagY = dataMag.magneticField.y
+                    let MagZ = dataMag.magneticField.z
+                    
+                    
+                    print ( "Gyro: \(currenTime) \(GyroX), \(GyroY), \(GyroZ)")
+                    print ( "Acc : \(currenTime) \(AccX), \(AccY), \(AccZ)")
+                    print ( "Mag : \(currenTime) \(MagX), \(MagY), \(MagZ)")
+                    
+                    
+                    let sensorOutput = SensorOutput()
+                    
+                    sensorOutput.timeStamp = Date() as NSDate
+                    
+                    sensorOutput.gyroX = GyroX
+                    sensorOutput.gyroY = GyroY
+                    sensorOutput.gyroZ = GyroZ
+                    
+                    sensorOutput.accX = AccX
+                    sensorOutput.accY = AccY
+                    sensorOutput.accZ = AccZ
+                    
+                    sensorOutput.magX = MagX
+                    sensorOutput.magY = MagY
+                    sensorOutput.magZ = MagZ
+                    
+                    self.sensorOutputs.append(sensorOutput)
+                    
+                }
+            }
+            )}
     }
     
     func stopGettingData() {
-        timer1.invalidate()
+        motionUpdateTimer.invalidate()
+        motionUpdateTimer = Timer()
         self.motion.stopGyroUpdates()
         self.motion.stopAccelerometerUpdates()
         self.motion.stopMagnetometerUpdates()
     }
-    
-    
-    
-    
-    
     
     func returnCurrentTime() -> String {
         let date = Date()
@@ -211,33 +205,10 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    // MARK - Dekegate settings updates
+    // MARK - Delegate settings updates
     
     func periodChangedNumberSettingsDelegate(_ number: Int){
         currentFrequency = number
-        stopGettingData()
-        startGettingData()
     }
     
     func changeIDpressed(){
@@ -251,16 +222,13 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
     
     
     
-    
-    
-    
-    
     // MARK - Action controlls
     
     @IBAction func StartButtonpressed(_ sender: Any) {
         status = .recording
         
-        timer = Timer.scheduledTimer(timeInterval: 0.001, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
+        startGettingData()
+        UIUpdateTimer = Timer.scheduledTimer(timeInterval: 0.001, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
         startTime = NSDate.timeIntervalSinceReferenceDate
         
         // Start session recording
@@ -275,7 +243,7 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
     @IBAction func stopButtonPressed(_ sender: Any) {
         
         // Finish session recording
-        timer.invalidate()
+        UIUpdateTimer.invalidate()
         currentSession?.duration = recordTime
         
         for sensorOutput in sensorOutputs {
@@ -313,19 +281,14 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
         currentSession = nil
         nextSessionid += 1
         
+        stopGettingData()
+        
         status = .waiting
     }
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    // MARK - Record stopwatch
+    // MARK - Update UI Timer
     
     //Update Time Function
     @objc func updateTime() {
@@ -357,10 +320,6 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
     
     
     
-    
-    
-    
-    
     // MARK - Update changing state
     
     func waiting() {
@@ -375,10 +334,7 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
         startButton.isEnabled = true
         stopButton.isEnabled = false
         settingsTableVC?.tableView.allowsSelection = true
-        
     }
-    
-    
     
     func recording() {
         settingsTableVC?.periodSlider.isEnabled = false
@@ -389,19 +345,13 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
         stopButton.isEnabled = true
         settingsTableVC?.tableView.allowsSelection = false
         settingsTableVC?.recordNumberLabel.text = "Record number:"
-        
     }
     
     
     
-    
-    
-    
-    
-    
     //  MARK - Filling data for testing datamodel
+    
     func fillTestData(){
-        
         
         let characteristicName1 = CharacteristicName (context:context)
         characteristicName1.name = "Gyro"
@@ -501,16 +451,6 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     //  MARK - Fetching and adding data to data model for local usage
     
     func findLastSessionId() {
@@ -577,11 +517,12 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
     
     
     // MARK - Work with WCSessionDelegate
+    
     func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
         DispatchQueue.main.async {
             
             if let text = userInfo["text"] as? String {
-               print(text)
+                print(text)
             }
         }
     }
@@ -602,9 +543,4 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
     
     func sessionDidDeactivate(_ session: WCSession) {
     }
-    
-    
-    
-    
 }
-
