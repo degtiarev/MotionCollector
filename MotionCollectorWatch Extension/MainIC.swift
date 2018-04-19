@@ -53,6 +53,7 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
     var nextSessionid: Int = 0
     var recordTime: String = ""
     var sensorOutputs = [SensorOutput]()
+    var isRecordDataFromPhone = false
     
     // Variables
     var recordID: Int = 0
@@ -115,6 +116,20 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
     // MARK - Control work of getting motion Data
     
     func startGettingData() {
+        
+        // send info to start data collecting on phone
+        if (isRecordDataFromPhone) {
+            let WCsession = WCSession.default
+            if WCsession.isReachable {
+                let data = ["Running": true]
+                
+                WCsession.sendMessage(data, replyHandler: { (response) in
+                    DispatchQueue.main.async {
+                        print ("received response: \(response)")
+                    }
+                }, errorHandler: nil)
+            }
+        }
         
         // If we have already started the workout, then do nothing.
         if (session != nil) {
@@ -179,6 +194,21 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
     }
     
     func stopGettingData() {
+        
+        // send info to start data collecting on phone
+        if (isRecordDataFromPhone) {
+            let WCsession = WCSession.default
+            if WCsession.isReachable {
+                let data = ["Running": false]
+                
+                WCsession.sendMessage(data, replyHandler: { (response) in
+                    DispatchQueue.main.async {
+                        print ("received response: \(response)")
+                    }
+                }, errorHandler: nil)
+            }
+        }
+        
         // If we have already stopped the workout, then do nothing.
         if (session == nil) {
             return
@@ -239,7 +269,7 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
     }
     
     @IBAction func recordDataFromPhoneSwitchChanged(_ value: Bool) {
-        
+        isRecordDataFromPhone = value
     }
     
     

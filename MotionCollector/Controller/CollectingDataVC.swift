@@ -518,13 +518,33 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
     
     // MARK - Work with WCSessionDelegate
     
+    // for receiving sessions
     func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
         DispatchQueue.main.async {
             
             if let frequency = userInfo["Frequency"] as? Int {
                 print("\(frequency)")
             }
-
+            
+            
+        }
+    }
+    
+    // for receiving signals to start recording
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
+        DispatchQueue.main.async {
+            
+            if let isAlsoRun = message["Running"] as? Bool {
+                
+                if (isAlsoRun) {
+                    self.StartButtonpressed((Any).self)
+                } else {
+                    self.stopButtonPressed((Any).self)
+                }
+                
+                // send back reply
+                replyHandler(["response": "Starting collecting data..."])
+            }
             
         }
     }
