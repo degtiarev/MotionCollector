@@ -14,6 +14,4 @@ class SessionsRow: NSObject {
     @IBOutlet var idRecordLabel: WKInterfaceLabel!
     @IBOutlet var durationLabel: WKInterfaceLabel!
     @IBOutlet var dateSessionLabel: WKInterfaceLabel!
-    
-    
 }

@@ -9,6 +9,7 @@
 import WatchKit
 import Foundation
 import CoreMotion
+import HealthKit
 
 
 class MainIC: WKInterfaceController {
@@ -37,33 +38,35 @@ class MainIC: WKInterfaceController {
         }
     }
     
-    
+    // Outlets
     @IBOutlet var timer: WKInterfaceTimer!
     @IBOutlet var recIDLabel: WKInterfaceLabel!
     @IBOutlet var recNumberPicker: WKInterfacePicker!
-    @IBOutlet var startButton: WKInterfaceButton!
-    @IBOutlet var stopButton: WKInterfaceButton!
+    @IBOutlet var recordDataFromPhoneSwitch: WKInterfaceSwitch!
     
-    
+    // Constants
     let IDsAmount = 20
     let currentFrequency: Int = 60
-    
     
     // For session saving
     var nextSessionid: Int = 0
     var recordTime: String = ""
     var sensorOutputs = [SensorOutput]()
     
-    // Changing variable
+    // Variables
     var recordID: Int = 0
     var currentSessionDate: NSDate = NSDate()
     
     // For motion getting
     let motion = CMMotionManager()
+    let queue = OperationQueue()
+    
+    // For background work
+    let healthStore = HKHealthStore()
+    var session: HKWorkoutSession?
     
     
-    
-    
+    // MARK - WKInterfaceController events
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
@@ -81,6 +84,10 @@ class MainIC: WKInterfaceController {
         // needs to be implemented
         // findLastSessionId()
         
+        // Serial queue for sample handling and calculations.
+        queue.maxConcurrentOperationCount = 1
+        queue.name = "MotionManagerQueue"
+        
         status = .waiting
     }
     
@@ -96,72 +103,86 @@ class MainIC: WKInterfaceController {
     
     
     
-    
-    
-    
-    
-    
-    
-    
+    // MARK - Control work of getting motion Data
     
     func startGettingData() {
-        if motion.isDeviceMotionAvailable {
+        
+        // If we have already started the workout, then do nothing.
+        if (session != nil) {
+            return
+        }
+        
+        // Configure the workout session.
+        let workoutConfiguration = HKWorkoutConfiguration()
+        workoutConfiguration.activityType = .walking
+        workoutConfiguration.locationType = .outdoor
+        
+        do {
+            session = try HKWorkoutSession(configuration: workoutConfiguration)
+        } catch {
+            fatalError("Unable to create the workout session!")
+        }
+        
+        // Start the workout session and device motion updates.
+        healthStore.start(session!)
+        
+        // Check motion availability
+        if !motion.isDeviceMotionAvailable {
+            print("Device Motion is not available.")
+            return
+        }
+        
+        motion.deviceMotionUpdateInterval = 1.0 / Double(currentFrequency)
+        motion.startDeviceMotionUpdates(to: queue) { (deviceMotion: CMDeviceMotion?, error: Error?) in
+            if error != nil {
+                print("Encountered error: \(error!)")
+            }
             
-            motion.deviceMotionUpdateInterval = 1.0 / Double(currentFrequency)
-            
-            let coreMotionHandler : CMDeviceMotionHandler = {(data: CMDeviceMotion?, error: Error?) -> Void in
-                // do something with data!.userAcceleration
-                // data!. can be used to access all the other properties mentioned above. Have a look in Xcode for the suggested variables or follow the link to CMDeviceMotion I have provided
-                
-                
+            if deviceMotion != nil {
                 
                 let currenTime = self.returnCurrentTime()
-                let GyroX = data!.rotationRate.x
-                let GyroY = data!.rotationRate.y
-                let GyroZ = data!.rotationRate.z
+                let GyroX = deviceMotion!.rotationRate.x
+                let GyroY = deviceMotion!.rotationRate.y
+                let GyroZ = deviceMotion!.rotationRate.z
                 
-                let AccX = data!.gravity.x + data!.userAcceleration.x;
-                let AccY = data!.gravity.y + data!.userAcceleration.y;
-                let AccZ = data!.gravity.z + data!.userAcceleration.z;
-                
+                let AccX = deviceMotion!.gravity.x + deviceMotion!.userAcceleration.x;
+                let AccY = deviceMotion!.gravity.y + deviceMotion!.userAcceleration.y;
+                let AccZ = deviceMotion!.gravity.z + deviceMotion!.userAcceleration.z;
                 
                 print ( "Gyro: \(currenTime) \(GyroX), \(GyroY), \(GyroZ)")
                 print ( "Acc : \(currenTime) \(AccX), \(AccY), \(AccZ)")
                 
                 
-                if (self.status == .recording){
-                    
-                    let sensorOutput = SensorOutput()
-                    
-                    sensorOutput.timeStamp = Date() as NSDate
-                    
-                    sensorOutput.gyroX = GyroX
-                    sensorOutput.gyroY = GyroY
-                    sensorOutput.gyroZ = GyroZ
-                    
-                    sensorOutput.accX = AccX
-                    sensorOutput.accY = AccY
-                    sensorOutput.accZ = AccZ
-                    
-                    
-                    self.sensorOutputs.append(sensorOutput)
-                    
-                } //if (self.status == .recording)
+                let sensorOutput = SensorOutput()
                 
+                sensorOutput.timeStamp = Date() as NSDate
+                sensorOutput.gyroX = GyroX
+                sensorOutput.gyroY = GyroY
+                sensorOutput.gyroZ = GyroZ
+                sensorOutput.accX = AccX
+                sensorOutput.accY = AccY
+                sensorOutput.accZ = AccZ
+                
+                self.sensorOutputs.append(sensorOutput)
                 
             }
-            motion.startDeviceMotionUpdates(to: OperationQueue.current!, withHandler: coreMotionHandler)
-            
-            
-        } else {
-            //notify user that no data is available
         }
-        
     }
     
     func stopGettingData() {
+        // If we have already stopped the workout, then do nothing.
+        if (session == nil) {
+            return
+        }
+        
+        // Stop the device motion updates and workout session.
         motion.stopDeviceMotionUpdates()
+        healthStore.end(session!)
+        
+        // Clear the workout session.
+        session = nil
     }
+    
     
     func returnCurrentTime() -> String {
         let date = Date()
@@ -175,11 +196,6 @@ class MainIC: WKInterfaceController {
         
         return currentTime
     }
-    
-    
-    
-    
-    
     
     
     
@@ -246,7 +262,9 @@ class MainIC: WKInterfaceController {
         
     }
     
-    
+    @IBAction func recordDataFromPhoneSwitchChanged(_ value: Bool) {
+        
+    }
     
     
     
@@ -254,22 +272,16 @@ class MainIC: WKInterfaceController {
     
     func waiting() {
         recNumberPicker.setEnabled(true)
-        startButton.setEnabled(true)
-        stopButton.setEnabled(false)
         timer.stop()
         timer.setDate(Date(timeIntervalSinceNow: 0.0))
-        
+        recordDataFromPhoneSwitch.setEnabled(true)
         stopGettingData()
     }
     
     func recording() {
         recNumberPicker.setEnabled(false)
-        startButton.setEnabled(false)
-        stopButton.setEnabled(true)
         timer.start()
-        
+        recordDataFromPhoneSwitch.setEnabled(false)
         startGettingData()
     }
-    
-    
 }

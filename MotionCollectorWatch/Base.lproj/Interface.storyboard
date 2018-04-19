@@ -32,43 +32,37 @@
                         </group>
                         <group width="1" height="0.29999999999999999" alignment="left" id="2YU-4i-TBW">
                             <items>
-                                <button width="0.5" height="1" alignment="left" title="Start" id="sdn-5P-cxy">
-                                    <color key="backgroundColor" red="0.35583251710000002" green="0.74969249959999995" blue="0.33435869219999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <switch width="1" alignment="left" title="Record data from phone" id="jfE-cI-0CH">
                                     <connections>
-                                        <action selector="startButtonPressed" destination="AgC-eL-Hgc" id="Xfp-nU-PHY"/>
+                                        <action selector="recordDataFromPhoneSwitchChanged:" destination="AgC-eL-Hgc" id="RLU-Ri-wCM"/>
                                     </connections>
-                                </button>
-                                <button width="0.5" height="1" alignment="left" title="Stop" id="aDB-dP-yUV">
-                                    <color key="backgroundColor" red="1" green="0.34509803919999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <connections>
-                                        <action selector="stopButtonPressed" destination="AgC-eL-Hgc" id="4bR-bg-Odi"/>
-                                    </connections>
-                                </button>
+                                </switch>
                             </items>
                         </group>
                     </items>
+                    <menu key="menu" id="rPq-6i-Jjn">
+                        <items>
+                            <menuItem title="Start" icon="accept" id="Vj3-qh-XhQ">
+                                <connections>
+                                    <action selector="startButtonPressed" destination="AgC-eL-Hgc" id="0rU-QA-8fU"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Stop" icon="decline" id="gkh-tw-253">
+                                <connections>
+                                    <action selector="stopButtonPressed" destination="AgC-eL-Hgc" id="UOf-1V-ZT7"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
                     <connections>
                         <outlet property="recIDLabel" destination="E52-i9-HjV" id="8kP-nE-s1c"/>
                         <outlet property="recNumberPicker" destination="lJN-9t-7cw" id="M15-bb-7cc"/>
-                        <outlet property="startButton" destination="sdn-5P-cxy" id="XWc-o6-uKW"/>
-                        <outlet property="stopButton" destination="aDB-dP-yUV" id="NTM-nH-QDa"/>
+                        <outlet property="recordDataFromPhoneSwitch" destination="jfE-cI-0CH" id="QzO-w0-Xn2"/>
                         <outlet property="timer" destination="UGD-RB-8yI" id="Cqm-0a-qu6"/>
-                        <segue destination="NqB-O1-Vee" kind="relationship" relationship="nextPage" id="MXp-Vq-Xvf"/>
                     </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="171" y="312"/>
-        </scene>
-        <!--Settings-->
-        <scene sceneID="R4x-2Y-fuD">
-            <objects>
-                <controller identifier="Settings" title="Settings" id="NqB-O1-Vee">
-                    <items>
-                        <switch width="1" alignment="left" title="Record also data from phone" id="jfE-cI-0CH"/>
-                    </items>
-                </controller>
-            </objects>
-            <point key="canvasLocation" x="453" y="312"/>
         </scene>
         <!--Records-->
         <scene sceneID="yBM-Zs-yU2">

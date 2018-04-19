@@ -19,8 +19,9 @@
 		DC39DF722071FE0200B34F13 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC39DF712071FE0200B34F13 /* ComplicationController.swift */; };
 		DC39DF742071FE0200B34F13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC39DF732071FE0200B34F13 /* Assets.xcassets */; };
 		DC39DF792071FE0200B34F13 /* MotionCollectorWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = DC39DF5A2071FE0100B34F13 /* MotionCollectorWatch.app */; };
-		DC5A986E2077D592004A373C /* RecordsIC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5A986D2077D592004A373C /* RecordsIC.swift */; };
 		DC5A98702077D63C004A373C /* SessionsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5A986F2077D63C004A373C /* SessionsRow.swift */; };
+		DC646AC120880BC100421F97 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC646AC020880BC100421F97 /* HealthKit.framework */; };
+		DC646AC320880BDF00421F97 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC646AC220880BDF00421F97 /* HealthKit.framework */; };
 		DC972306204150C0002047EF /* ItemSessionSessionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC972305204150C0002047EF /* ItemSessionSessionCell.swift */; };
 		DCA52D7F2046A7F00011AA74 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA52D7E2046A7F00011AA74 /* RoundButton.swift */; };
 		DCB7BBF1203A5688001F1E9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB7BBF0203A5688001F1E9F /* AppDelegate.swift */; };
@@ -99,8 +100,11 @@
 		DC39DF732071FE0200B34F13 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC39DF752071FE0200B34F13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC39DF762071FE0200B34F13 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
-		DC5A986D2077D592004A373C /* RecordsIC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsIC.swift; sourceTree = "<group>"; };
 		DC5A986F2077D63C004A373C /* SessionsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionsRow.swift; sourceTree = "<group>"; };
+		DC646ABE20880BC100421F97 /* MotionCollectorWatch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "MotionCollectorWatch Extension.entitlements"; sourceTree = "<group>"; };
+		DC646AC020880BC100421F97 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS4.3.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
+		DC646AC220880BDF00421F97 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		DC646AC420880BDF00421F97 /* MotionCollector.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MotionCollector.entitlements; sourceTree = "<group>"; };
 		DC972305204150C0002047EF /* ItemSessionSessionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSessionSessionCell.swift; sourceTree = "<group>"; };
 		DCA52D7E2046A7F00011AA74 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		DCB7BBED203A5688001F1E9F /* MotionCollector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MotionCollector.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,6 +133,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC646AC120880BC100421F97 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,6 +141,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC646AC320880BDF00421F97 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,8 +161,8 @@
 		DC39DF6A2071FE0200B34F13 /* MotionCollectorWatch Extension */ = {
 			isa = PBXGroup;
 			children = (
+				DC646ABE20880BC100421F97 /* MotionCollectorWatch Extension.entitlements */,
 				DC39DF6B2071FE0200B34F13 /* MainIC.swift */,
-				DC5A986D2077D592004A373C /* RecordsIC.swift */,
 				DC5A986F2077D63C004A373C /* SessionsRow.swift */,
 				DC39DF6D2071FE0200B34F13 /* ExtensionDelegate.swift */,
 				DC39DF6F2071FE0200B34F13 /* NotificationController.swift */,
@@ -166,6 +172,15 @@
 				DC39DF762071FE0200B34F13 /* PushNotificationPayload.apns */,
 			);
 			path = "MotionCollectorWatch Extension";
+			sourceTree = "<group>";
+		};
+		DC646ABF20880BC100421F97 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DC646AC220880BDF00421F97 /* HealthKit.framework */,
+				DC646AC020880BC100421F97 /* HealthKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		DC9722F020414B94002047EF /* Generated */ = {
@@ -186,6 +201,7 @@
 				DC39DF5B2071FE0200B34F13 /* MotionCollectorWatch */,
 				DC39DF6A2071FE0200B34F13 /* MotionCollectorWatch Extension */,
 				DCB7BBEE203A5688001F1E9F /* Products */,
+				DC646ABF20880BC100421F97 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -202,6 +218,7 @@
 		DCB7BBEF203A5688001F1E9F /* MotionCollector */ = {
 			isa = PBXGroup;
 			children = (
+				DC646AC420880BDF00421F97 /* MotionCollector.entitlements */,
 				DCB7BC08203A58C5001F1E9F /* Sources */,
 				DCB7BC05203A582F001F1E9F /* Model */,
 				DCB7BC06203A5839001F1E9F /* View */,
@@ -330,10 +347,23 @@
 					DC39DF652071FE0200B34F13 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes.watchos.extension = {
+								enabled = 1;
+							};
+							com.apple.HealthKit.watchos = {
+								enabled = 1;
+							};
+						};
 					};
 					DCB7BBEC203A5688001F1E9F = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -393,7 +423,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC39DF702071FE0200B34F13 /* NotificationController.swift in Sources */,
-				DC5A986E2077D592004A373C /* RecordsIC.swift in Sources */,
 				DC39DF722071FE0200B34F13 /* ComplicationController.swift in Sources */,
 				DC39DF6E2071FE0200B34F13 /* ExtensionDelegate.swift in Sources */,
 				DC39DF6C2071FE0200B34F13 /* MainIC.swift in Sources */,
@@ -512,6 +541,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "MotionCollectorWatch Extension/MotionCollectorWatch Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F2X9TX4X64;
 				INFOPLIST_FILE = "MotionCollectorWatch Extension/Info.plist";
@@ -530,6 +560,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "MotionCollectorWatch Extension/MotionCollectorWatch Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F2X9TX4X64;
 				INFOPLIST_FILE = "MotionCollectorWatch Extension/Info.plist";
@@ -659,6 +690,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MotionCollector/MotionCollector.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F2X9TX4X64;
 				INFOPLIST_FILE = "$(SRCROOT)/MotionCollector/Sources/Info.plist";
@@ -674,6 +706,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MotionCollector/MotionCollector.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F2X9TX4X64;
 				INFOPLIST_FILE = "$(SRCROOT)/MotionCollector/Sources/Info.plist";
