@@ -33,6 +33,8 @@
 		DC646AFE2088925800421F97 /* Session+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC646AF12088924700421F97 /* Session+CoreDataClass.swift */; };
 		DC646AFF2088925800421F97 /* CharacteristicName+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC646AF32088924700421F97 /* CharacteristicName+CoreDataClass.swift */; };
 		DC646B002088925800421F97 /* SensorData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC646AED2088924700421F97 /* SensorData+CoreDataClass.swift */; };
+		DC82AAC1208EDAFE00A30939 /* SessionContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC82AAC0208EDAFE00A30939 /* SessionContainer.swift */; };
+		DC82AAC2208EDAFE00A30939 /* SessionContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC82AAC0208EDAFE00A30939 /* SessionContainer.swift */; };
 		DC972306204150C0002047EF /* ItemSessionSessionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC972305204150C0002047EF /* ItemSessionSessionCell.swift */; };
 		DCA2827720892D7B0078CC3E /* SessionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA2827620892D7B0078CC3E /* SessionType.swift */; };
 		DCA52D7F2046A7F00011AA74 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA52D7E2046A7F00011AA74 /* RoundButton.swift */; };
@@ -116,6 +118,7 @@
 		DC646AF22088924700421F97 /* Session+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DC646AF32088924700421F97 /* CharacteristicName+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CharacteristicName+CoreDataClass.swift"; sourceTree = "<group>"; };
 		DC646AF42088924700421F97 /* CharacteristicName+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CharacteristicName+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		DC82AAC0208EDAFE00A30939 /* SessionContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionContainer.swift; sourceTree = "<group>"; };
 		DC972305204150C0002047EF /* ItemSessionSessionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSessionSessionCell.swift; sourceTree = "<group>"; };
 		DCA2827620892D7B0078CC3E /* SessionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionType.swift; sourceTree = "<group>"; };
 		DCA52D7E2046A7F00011AA74 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
@@ -234,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				DC119ECD204ABFA00035ED8F /* SensorOutput.swift */,
+				DC82AAC0208EDAFE00A30939 /* SessionContainer.swift */,
 				DCA2827620892D7B0078CC3E /* SessionType.swift */,
 				DC646AED2088924700421F97 /* SensorData+CoreDataClass.swift */,
 				DC646AEF2088924700421F97 /* Characteristic+CoreDataClass.swift */,
@@ -432,6 +436,7 @@
 				DC39DF6C2071FE0200B34F13 /* MainIC.swift in Sources */,
 				DC23B877207BDE5600CC813F /* SensorOutput.swift in Sources */,
 				DC646B002088925800421F97 /* SensorData+CoreDataClass.swift in Sources */,
+				DC82AAC2208EDAFE00A30939 /* SessionContainer.swift in Sources */,
 				DC646AFD2088925800421F97 /* Characteristic+CoreDataClass.swift in Sources */,
 				DC646AFF2088925800421F97 /* CharacteristicName+CoreDataClass.swift in Sources */,
 				DC646AFE2088925800421F97 /* Session+CoreDataClass.swift in Sources */,
@@ -458,6 +463,7 @@
 				DCE4CC67206E1D750043180A /* SessionIDCell.swift in Sources */,
 				DCB7BBF1203A5688001F1E9F /* AppDelegate.swift in Sources */,
 				DCA52D7F2046A7F00011AA74 /* RoundButton.swift in Sources */,
+				DC82AAC1208EDAFE00A30939 /* SessionContainer.swift in Sources */,
 				DC646AF82088924700421F97 /* Characteristic+CoreDataProperties.swift in Sources */,
 				DCA2827720892D7B0078CC3E /* SessionType.swift in Sources */,
 				DC646AF52088924700421F97 /* SensorData+CoreDataClass.swift in Sources */,

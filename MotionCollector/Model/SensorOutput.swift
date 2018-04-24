@@ -11,7 +11,7 @@ import Foundation
 
 class SensorOutput: Codable {
     
-    public var timeStamp: Date?
+    var timeStamp: Date?
     
     var gyroX: Double?
     var gyroY: Double?

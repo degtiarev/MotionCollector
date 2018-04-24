@@ -279,14 +279,14 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
             self.currentSession?.addToToSensorData(sensorData)
             
         }
-
+        
         sensorOutputs.removeAll()
         
         if sessionType == SessionType.OnlyPhone {
-        ad.saveContext()
-        currentSession = nil
+            ad.saveContext()
+            currentSession = nil
         }
-            
+        
         nextSessionid += 1
         stopGettingData()
         status = .waiting
@@ -600,12 +600,12 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
         }
     }
     
+    // for receiving sessions
     func session(_ session: WCSession, didReceive file: WCSessionFile) {
         
         print ("File received!")
         
         let fm = FileManager.default
-        
         let destURL = getDocumentsDirectory().appendingPathComponent("saved_file")
         
         do {
@@ -619,26 +619,18 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
             try fm.copyItem(at: file.fileURL, to: destURL)
             
             // load the file and print it out
-            let mutableData1 = NSMutableData(contentsOf: destURL)
+            let mutableData = NSMutableData(contentsOf: destURL)
             
-            let data1 = mutableData1?.copy() as! Data
+            let data = mutableData?.copy() as! Data
             
-            let unarchiver1 = NSKeyedUnarchiver(forReadingWith: data1)
+            let unarchiver = NSKeyedUnarchiver(forReadingWith: data)
             do {
-                if let sensorOutputCopy = try unarchiver1.decodeTopLevelDecodable(SensorOutput.self, forKey: NSKeyedArchiveRootObjectKey) {
-                    print("deserialized sensor output: \(sensorOutputCopy.accX)")
+                if let sessionContainerCopy = try unarchiver.decodeTopLevelDecodable(SessionContainer.self, forKey: NSKeyedArchiveRootObjectKey) {
+                    print("deserialized sensor output: \(String(describing: sessionContainerCopy.currentFrequency))")
                 }
             } catch {
                 print("unarchiving failure: \(error)")
             }
-            
-            
-            
-            
-            
-            
-//            let contents = try SensorOutput(from: destURL as! Decoder)
-//            print (contents.accX)
         }
             
         catch {
