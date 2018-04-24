@@ -9,9 +9,9 @@
 import Foundation
 
 
-class SensorOutput {
+class SensorOutput: Codable {
     
-    var timeStamp: NSDate?
+    public var timeStamp: Date?
     
     var gyroX: Double?
     var gyroY: Double?
@@ -25,26 +25,5 @@ class SensorOutput {
     var magY: Double?
     var magZ: Double?
     
-    init(){
-        
-    }
-    
-    init(timeStamp: NSDate?, GyroX: Double?, GyroY: Double?, GyroZ: Double?, AccX: Double?, AccY: Double?, AccZ: Double?, MagX: Double?, MagY: Double?, MagZ: Double?) {
-        self.timeStamp = timeStamp
-        
-        self.gyroX = GyroX
-        self.gyroY = GyroY
-        self.gyroZ = GyroZ
-        
-        self.accX = AccX
-        self.accY = AccY
-        self.accZ = AccZ
-        
-        self.magX = MagX
-        self.magY = MagY
-        self.magZ = MagZ
-    }
-    
-    
-    
+    init() {}
 }

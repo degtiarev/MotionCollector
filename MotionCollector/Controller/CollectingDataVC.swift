@@ -56,6 +56,7 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
     var nextSessionid: Int = 0
     var recordTime: String = ""
     var sensorOutputs = [SensorOutput]()
+    var sensorWatchOutputs = [SensorOutput]()
     var characteristicsNames  = [CharacteristicName]()
     var sessionType: SessionType = SessionType.OnlyPhone
     
@@ -140,7 +141,7 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
                 // Get the motion data.
                 if let dataAcc = self.motion.accelerometerData, let dataMag = self.motion.magnetometerData, let dataGyro = self.motion.gyroData {
                     
-                    let currenTime = self.returnCurrentTime()
+                    //let currenTime = self.returnCurrentTime()
                     
                     let GyroX = dataGyro.rotationRate.x
                     let GyroY = dataGyro.rotationRate.y
@@ -155,14 +156,14 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
                     let MagZ = dataMag.magneticField.z
                     
                     
-                    print ( "Gyro: \(currenTime) \(GyroX), \(GyroY), \(GyroZ)")
-                    print ( "Acc : \(currenTime) \(AccX), \(AccY), \(AccZ)")
-                    print ( "Mag : \(currenTime) \(MagX), \(MagY), \(MagZ)")
+                    //print ( "Gyro: \(currenTime) \(GyroX), \(GyroY), \(GyroZ)")
+                    //print ( "Acc : \(currenTime) \(AccX), \(AccY), \(AccZ)")
+                    //print ( "Mag : \(currenTime) \(MagX), \(MagY), \(MagZ)")
                     
                     
                     let sensorOutput = SensorOutput()
                     
-                    sensorOutput.timeStamp = Date() as NSDate
+                    sensorOutput.timeStamp = Date()
                     
                     sensorOutput.gyroX = GyroX
                     sensorOutput.gyroY = GyroY
@@ -238,6 +239,7 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
         currentSession?.date = NSDate()
         currentSession?.frequency = Int32(currentFrequency)
         currentSession?.recordID = Int32(recordID)
+        currentSession?.type = Int32(sessionType.rawValue)
     }
     
     
@@ -269,7 +271,7 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
             
             
             let sensorData = SensorData(context: context)
-            sensorData.timeStamp = sensorOutput.timeStamp
+            sensorData.timeStamp = sensorOutput.timeStamp! as NSDate
             sensorData.addToToCharacteristic(characteristicGyro)
             sensorData.addToToCharacteristic(characteristicAcc)
             sensorData.addToToCharacteristic(characteristicMag)
@@ -277,16 +279,19 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
             self.currentSession?.addToToSensorData(sensorData)
             
         }
-        
+
         sensorOutputs.removeAll()
+        
+        if sessionType == SessionType.OnlyPhone {
         ad.saveContext()
         currentSession = nil
+        }
+            
         nextSessionid += 1
-        
         stopGettingData()
-        
         status = .waiting
     }
+    
     
     
     
@@ -528,7 +533,39 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
                 print("\(frequency)")
             }
             
-            
+            if let outputs = userInfo["Data"] as? [SensorOutput] {
+                self.sensorWatchOutputs = outputs
+                
+                if (self.sessionType == SessionType.PhoneAndWatch) {
+                    
+                    for sensorOutput in self.sensorWatchOutputs {
+                        
+                        let characteristicGyro = Characteristic (context:context)
+                        characteristicGyro.x = sensorOutput.gyroX!
+                        characteristicGyro.y = sensorOutput.gyroY!
+                        characteristicGyro.z = sensorOutput.gyroZ!
+                        characteristicGyro.toCharacteristicName = self.characteristicsNames[1]
+                        
+                        let characteristicAcc = Characteristic (context:context)
+                        characteristicAcc.x = sensorOutput.accX!
+                        characteristicAcc.y = sensorOutput.accY!
+                        characteristicAcc.z = sensorOutput.accZ!
+                        characteristicAcc.toCharacteristicName = self.characteristicsNames[0]
+                        
+                        
+                        let sensorData = SensorData(context: context)
+                        sensorData.timeStamp = sensorOutput.timeStamp as NSDate?
+                        sensorData.addToToCharacteristic(characteristicGyro)
+                        sensorData.addToToCharacteristic(characteristicAcc)
+                        
+                        self.currentSession?.addToToSensorData(sensorData)
+                    }
+                    self.sensorWatchOutputs.removeAll()
+                    
+                    ad.saveContext()
+                    self.currentSession = nil
+                }
+            }
         }
     }
     
@@ -543,7 +580,7 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
                     self.sessionType = SessionType.PhoneAndWatch
                 } else {
                     self.stopButtonPressed((Any).self)
-                     self.sessionType = SessionType.OnlyPhone
+                    self.sessionType = SessionType.OnlyPhone
                 }
                 
                 // send back reply
@@ -563,10 +600,66 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
         }
     }
     
+    func session(_ session: WCSession, didReceive file: WCSessionFile) {
+        
+        print ("File received!")
+        
+        let fm = FileManager.default
+        
+        let destURL = getDocumentsDirectory().appendingPathComponent("saved_file")
+        
+        do {
+            if fm.fileExists(atPath: destURL.path) {
+                
+                // the file already exists - delete it
+                try fm.removeItem (at: destURL)
+            }
+            
+            // copy the file for its temporary location
+            try fm.copyItem(at: file.fileURL, to: destURL)
+            
+            // load the file and print it out
+            let mutableData1 = NSMutableData(contentsOf: destURL)
+            
+            let data1 = mutableData1?.copy() as! Data
+            
+            let unarchiver1 = NSKeyedUnarchiver(forReadingWith: data1)
+            do {
+                if let sensorOutputCopy = try unarchiver1.decodeTopLevelDecodable(SensorOutput.self, forKey: NSKeyedArchiveRootObjectKey) {
+                    print("deserialized sensor output: \(sensorOutputCopy.accX)")
+                }
+            } catch {
+                print("unarchiving failure: \(error)")
+            }
+            
+            
+            
+            
+            
+            
+//            let contents = try SensorOutput(from: destURL as! Decoder)
+//            print (contents.accX)
+        }
+            
+        catch {
+            // something went wrong
+            print ("File copy failed")
+        }
+        
+    }
+    
+    func getDocumentsDirectory() -> URL {
+        
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
     func sessionDidBecomeInactive(_ session: WCSession) {
         
     }
     
     func sessionDidDeactivate(_ session: WCSession) {
     }
+    
+    
 }

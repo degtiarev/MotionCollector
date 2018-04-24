@@ -175,11 +175,13 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
                 
                 print ( "Gyro: \(currenTime) \(GyroX), \(GyroY), \(GyroZ)")
                 print ( "Acc : \(currenTime) \(AccX), \(AccY), \(AccZ)")
+                // print ( "Gyro: \(currenTime) \(GyroX), \(GyroY), \(GyroZ)")
+                // print ( "Acc : \(currenTime) \(AccX), \(AccY), \(AccZ)")
                 
                 
                 let sensorOutput = SensorOutput()
                 
-                sensorOutput.timeStamp = Date() as NSDate
+                sensorOutput.timeStamp = Date()
                 sensorOutput.gyroX = GyroX
                 sensorOutput.gyroY = GyroY
                 sensorOutput.gyroZ = GyroZ
@@ -250,22 +252,127 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
     
     @IBAction func stopButtonPressed() {
         
+        let saveURL = getDocumentDirectory().appendingPathComponent("shared_file")
+        
+        var data = [String: Any]()
+        data["SessionID"] = nextSessionid
+        data["Date"] = currentSessionDate
+        data["Frequency"] = currentFrequency
+        data["RecordID"] = recordID
+        data["Duration"] = recordTime
+        data["Data"] = sensorOutputs
+        
+        let myData = SensorOutput()
+        myData.timeStamp = Date()
+        myData.gyroX = 0.0
+        myData.gyroY = 0.0
+        myData.gyroZ = 0.0
+        myData.accX = 2.3333
+        myData.accY = 0.0
+        myData.accZ = 0.0
+        myData.magX = 0.0
+        myData.magY = 0.0
+        myData.magZ = 0.0
+        
+        
+//        let a = NSKeyedArchiver()
+//        try? a.encodeEncodable(myData, forKey: "root")
+//        let data1 = a.encodedData
+//
+//        let u = NSKeyedUnarchiver(forReadingWith: data1)
+//        let handAgain = try u.decodeDecodable(SensorOutput.self, forKey: "root")
+//        print(handAgain?.accX)
+        
+        let mutableData = NSMutableData()
+        let archiver = NSKeyedArchiver(forWritingWith: mutableData)
+        try! archiver.encodeEncodable(myData, forKey: NSKeyedArchiveRootObjectKey)
+        archiver.finishEncoding()
+        
+        
+        
+        let sourceURL = getDocumentDirectory().appendingPathComponent("saveFile")
+        mutableData.write(to: sourceURL, atomically: true)
+        
+        
+        
+        
+        
+//
+//        let data0 = mutableData.copy() as! Data
+//
+//        let unarchiver = NSKeyedUnarchiver(forReadingWith: data0)
+//        do {
+//            if let sensorOutputCopy = try unarchiver.decodeTopLevelDecodable(SensorOutput.self, forKey: NSKeyedArchiveRootObjectKey) {
+//                print("deserialized sensor output: \(sensorOutputCopy.accX)")
+//            }
+//        } catch {
+//            print("unarchiving failure: \(error)")
+//        }
+//
+//
+//
+        
+        
+        
+        
+        
+
+//        let mutableData1 = NSMutableData(contentsOfFile: saveURL.absoluteString)
+//        
+//        let data1 = mutableData1?.copy() as! Data
+//        
+//        let unarchiver1 = NSKeyedUnarchiver(forReadingWith: data0)
+//        do {
+//            if let sensorOutputCopy = try unarchiver.decodeTopLevelDecodable(SensorOutput.self, forKey: NSKeyedArchiveRootObjectKey) {
+//                print("deserialized sensor output: \(sensorOutputCopy.accX)")
+//            }
+//        } catch {
+//            print("unarchiving failure: \(error)")
+//        }
+        
+        
+        
         let session = WCSession.default
         if session.activationState == .activated {
             
-            var data = [String: Any]()
-            data["SessionID"] = nextSessionid
-            data["Date"] = currentSessionDate
-            data["Frequency"] = currentFrequency
-            data["RecordID"] = recordID
-            data["Data"] = sensorOutputs
-            data["Duration"] = recordTime
+            // create a URL from where the file is/will be saved
+            let fm = FileManager.default
+            let sourceURL = getDocumentDirectory().appendingPathComponent("saveFile")
             
-            session.transferUserInfo(data)
+            if !fm.fileExists(atPath: sourceURL.path) {
+                
+                // the file doesn't exist - create it now
+                try? "Hello from phone!".write(to: sourceURL, atomically: true, encoding: String.Encoding.utf8)
+                
+            }
+            
+            // the file exists now; send it across the session
+            session.transferFile(sourceURL, metadata: nil)
+            
         }
+        
+    
+        
+        
         sensorOutputs.removeAll()
         nextSessionid += 1
         status = .waiting
+    }
+    
+    var filePath: String {
+        //1 - manager lets you examine contents of a files and folders in your app; creates a directory to where we are saving it
+        let manager = FileManager.default
+        //2 - this returns an array of urls from our documentDirectory and we take the first path
+        let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first
+        print("this is the url path in the documentDirectory \(String(describing: url))")
+        //3 - creates a new path component and creates a new file called "Data" which is where we will store our Data array.
+        return (url!.appendingPathComponent("Data").path)
+    }
+    
+    func getDocumentDirectory() -> URL {
+        
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
     }
     
     @IBAction func recordDataFromPhoneSwitchChanged(_ value: Bool) {

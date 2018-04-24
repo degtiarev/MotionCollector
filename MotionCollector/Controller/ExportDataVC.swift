@@ -268,7 +268,7 @@ class ExportDataVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     func getSensorOutput(sensorData: SensorData) -> SensorOutput {
         
         let sensorOutput = SensorOutput()
-        sensorOutput.timeStamp = sensorData.timeStamp
+        sensorOutput.timeStamp = sensorData.timeStamp! as Date
         
         let characteristics = sensorData.toCharacteristic!.allObjects as! [Characteristic]
         
