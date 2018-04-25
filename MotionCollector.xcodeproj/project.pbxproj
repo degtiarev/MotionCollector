@@ -21,18 +21,16 @@
 		DC39DF792071FE0200B34F13 /* MotionCollectorWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = DC39DF5A2071FE0100B34F13 /* MotionCollectorWatch.app */; };
 		DC646AC120880BC100421F97 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC646AC020880BC100421F97 /* HealthKit.framework */; };
 		DC646AC320880BDF00421F97 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC646AC220880BDF00421F97 /* HealthKit.framework */; };
-		DC646AF52088924700421F97 /* SensorData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC646AED2088924700421F97 /* SensorData+CoreDataClass.swift */; };
-		DC646AF62088924700421F97 /* SensorData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC646AEE2088924700421F97 /* SensorData+CoreDataProperties.swift */; };
-		DC646AF72088924700421F97 /* Characteristic+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC646AEF2088924700421F97 /* Characteristic+CoreDataClass.swift */; };
-		DC646AF82088924700421F97 /* Characteristic+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC646AF02088924700421F97 /* Characteristic+CoreDataProperties.swift */; };
-		DC646AF92088924700421F97 /* Session+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC646AF12088924700421F97 /* Session+CoreDataClass.swift */; };
-		DC646AFA2088924700421F97 /* Session+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC646AF22088924700421F97 /* Session+CoreDataProperties.swift */; };
-		DC646AFB2088924700421F97 /* CharacteristicName+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC646AF32088924700421F97 /* CharacteristicName+CoreDataClass.swift */; };
-		DC646AFC2088924700421F97 /* CharacteristicName+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC646AF42088924700421F97 /* CharacteristicName+CoreDataProperties.swift */; };
-		DC646AFD2088925800421F97 /* Characteristic+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC646AEF2088924700421F97 /* Characteristic+CoreDataClass.swift */; };
-		DC646AFE2088925800421F97 /* Session+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC646AF12088924700421F97 /* Session+CoreDataClass.swift */; };
-		DC646AFF2088925800421F97 /* CharacteristicName+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC646AF32088924700421F97 /* CharacteristicName+CoreDataClass.swift */; };
-		DC646B002088925800421F97 /* SensorData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC646AED2088924700421F97 /* SensorData+CoreDataClass.swift */; };
+		DC6A3F6B208F853800B12C60 /* Characteristic+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6A3F61208F853800B12C60 /* Characteristic+CoreDataClass.swift */; };
+		DC6A3F6C208F853800B12C60 /* Characteristic+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6A3F62208F853800B12C60 /* Characteristic+CoreDataProperties.swift */; };
+		DC6A3F6D208F853800B12C60 /* SensorData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6A3F63208F853800B12C60 /* SensorData+CoreDataClass.swift */; };
+		DC6A3F6E208F853800B12C60 /* SensorData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6A3F64208F853800B12C60 /* SensorData+CoreDataProperties.swift */; };
+		DC6A3F6F208F853800B12C60 /* Session+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6A3F65208F853800B12C60 /* Session+CoreDataClass.swift */; };
+		DC6A3F70208F853800B12C60 /* Session+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6A3F66208F853800B12C60 /* Session+CoreDataProperties.swift */; };
+		DC6A3F71208F853800B12C60 /* Sensor+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6A3F67208F853800B12C60 /* Sensor+CoreDataClass.swift */; };
+		DC6A3F72208F853800B12C60 /* Sensor+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6A3F68208F853800B12C60 /* Sensor+CoreDataProperties.swift */; };
+		DC6A3F73208F853800B12C60 /* CharacteristicName+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6A3F69208F853800B12C60 /* CharacteristicName+CoreDataClass.swift */; };
+		DC6A3F74208F853800B12C60 /* CharacteristicName+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6A3F6A208F853800B12C60 /* CharacteristicName+CoreDataProperties.swift */; };
 		DC82AAC1208EDAFE00A30939 /* SessionContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC82AAC0208EDAFE00A30939 /* SessionContainer.swift */; };
 		DC82AAC2208EDAFE00A30939 /* SessionContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC82AAC0208EDAFE00A30939 /* SessionContainer.swift */; };
 		DC972306204150C0002047EF /* ItemSessionSessionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC972305204150C0002047EF /* ItemSessionSessionCell.swift */; };
@@ -110,14 +108,16 @@
 		DC646AC020880BC100421F97 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS4.3.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 		DC646AC220880BDF00421F97 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		DC646AC420880BDF00421F97 /* MotionCollector.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MotionCollector.entitlements; sourceTree = "<group>"; };
-		DC646AED2088924700421F97 /* SensorData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SensorData+CoreDataClass.swift"; sourceTree = "<group>"; };
-		DC646AEE2088924700421F97 /* SensorData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SensorData+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		DC646AEF2088924700421F97 /* Characteristic+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Characteristic+CoreDataClass.swift"; sourceTree = "<group>"; };
-		DC646AF02088924700421F97 /* Characteristic+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Characteristic+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		DC646AF12088924700421F97 /* Session+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+CoreDataClass.swift"; sourceTree = "<group>"; };
-		DC646AF22088924700421F97 /* Session+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		DC646AF32088924700421F97 /* CharacteristicName+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CharacteristicName+CoreDataClass.swift"; sourceTree = "<group>"; };
-		DC646AF42088924700421F97 /* CharacteristicName+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CharacteristicName+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		DC6A3F61208F853800B12C60 /* Characteristic+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Characteristic+CoreDataClass.swift"; sourceTree = "<group>"; };
+		DC6A3F62208F853800B12C60 /* Characteristic+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Characteristic+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		DC6A3F63208F853800B12C60 /* SensorData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SensorData+CoreDataClass.swift"; sourceTree = "<group>"; };
+		DC6A3F64208F853800B12C60 /* SensorData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SensorData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		DC6A3F65208F853800B12C60 /* Session+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+CoreDataClass.swift"; sourceTree = "<group>"; };
+		DC6A3F66208F853800B12C60 /* Session+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		DC6A3F67208F853800B12C60 /* Sensor+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Sensor+CoreDataClass.swift"; path = "Generated/Sensor+CoreDataClass.swift"; sourceTree = "<group>"; };
+		DC6A3F68208F853800B12C60 /* Sensor+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sensor+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		DC6A3F69208F853800B12C60 /* CharacteristicName+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CharacteristicName+CoreDataClass.swift"; sourceTree = "<group>"; };
+		DC6A3F6A208F853800B12C60 /* CharacteristicName+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CharacteristicName+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DC82AAC0208EDAFE00A30939 /* SessionContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionContainer.swift; sourceTree = "<group>"; };
 		DC972305204150C0002047EF /* ItemSessionSessionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSessionSessionCell.swift; sourceTree = "<group>"; };
 		DCA2827620892D7B0078CC3E /* SessionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionType.swift; sourceTree = "<group>"; };
@@ -192,10 +192,11 @@
 		DC9722F020414B94002047EF /* Generated */ = {
 			isa = PBXGroup;
 			children = (
-				DC646AEE2088924700421F97 /* SensorData+CoreDataProperties.swift */,
-				DC646AF02088924700421F97 /* Characteristic+CoreDataProperties.swift */,
-				DC646AF22088924700421F97 /* Session+CoreDataProperties.swift */,
-				DC646AF42088924700421F97 /* CharacteristicName+CoreDataProperties.swift */,
+				DC6A3F62208F853800B12C60 /* Characteristic+CoreDataProperties.swift */,
+				DC6A3F64208F853800B12C60 /* SensorData+CoreDataProperties.swift */,
+				DC6A3F66208F853800B12C60 /* Session+CoreDataProperties.swift */,
+				DC6A3F68208F853800B12C60 /* Sensor+CoreDataProperties.swift */,
+				DC6A3F6A208F853800B12C60 /* CharacteristicName+CoreDataProperties.swift */,
 			);
 			path = Generated;
 			sourceTree = "<group>";
@@ -239,10 +240,11 @@
 				DC119ECD204ABFA00035ED8F /* SensorOutput.swift */,
 				DC82AAC0208EDAFE00A30939 /* SessionContainer.swift */,
 				DCA2827620892D7B0078CC3E /* SessionType.swift */,
-				DC646AED2088924700421F97 /* SensorData+CoreDataClass.swift */,
-				DC646AEF2088924700421F97 /* Characteristic+CoreDataClass.swift */,
-				DC646AF12088924700421F97 /* Session+CoreDataClass.swift */,
-				DC646AF32088924700421F97 /* CharacteristicName+CoreDataClass.swift */,
+				DC6A3F61208F853800B12C60 /* Characteristic+CoreDataClass.swift */,
+				DC6A3F63208F853800B12C60 /* SensorData+CoreDataClass.swift */,
+				DC6A3F65208F853800B12C60 /* Session+CoreDataClass.swift */,
+				DC6A3F67208F853800B12C60 /* Sensor+CoreDataClass.swift */,
+				DC6A3F69208F853800B12C60 /* CharacteristicName+CoreDataClass.swift */,
 				DC23343C204386E900232A8A /* DataCollector.xcdatamodeld */,
 				DC9722F020414B94002047EF /* Generated */,
 			);
@@ -435,11 +437,7 @@
 				DC39DF6E2071FE0200B34F13 /* ExtensionDelegate.swift in Sources */,
 				DC39DF6C2071FE0200B34F13 /* MainIC.swift in Sources */,
 				DC23B877207BDE5600CC813F /* SensorOutput.swift in Sources */,
-				DC646B002088925800421F97 /* SensorData+CoreDataClass.swift in Sources */,
 				DC82AAC2208EDAFE00A30939 /* SessionContainer.swift in Sources */,
-				DC646AFD2088925800421F97 /* Characteristic+CoreDataClass.swift in Sources */,
-				DC646AFF2088925800421F97 /* CharacteristicName+CoreDataClass.swift in Sources */,
-				DC646AFE2088925800421F97 /* Session+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,26 +445,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC6A3F70208F853800B12C60 /* Session+CoreDataProperties.swift in Sources */,
 				DCB7BC0C203A6321001F1E9F /* ExportDataVC.swift in Sources */,
-				DC646AF62088924700421F97 /* SensorData+CoreDataProperties.swift in Sources */,
-				DC646AFB2088924700421F97 /* CharacteristicName+CoreDataClass.swift in Sources */,
 				DC972306204150C0002047EF /* ItemSessionSessionCell.swift in Sources */,
-				DC646AF72088924700421F97 /* Characteristic+CoreDataClass.swift in Sources */,
-				DC646AFA2088924700421F97 /* Session+CoreDataProperties.swift in Sources */,
+				DC6A3F73208F853800B12C60 /* CharacteristicName+CoreDataClass.swift in Sources */,
 				DCE4CC65206E0A620043180A /* RecordIDVC.swift in Sources */,
+				DC6A3F6B208F853800B12C60 /* Characteristic+CoreDataClass.swift in Sources */,
 				DCF103EE2046BB17005B63C5 /* SettingsTableVC.swift in Sources */,
+				DC6A3F6E208F853800B12C60 /* SensorData+CoreDataProperties.swift in Sources */,
 				DC119ECE204ABFA00035ED8F /* SensorOutput.swift in Sources */,
 				DC23343E204386E900232A8A /* DataCollector.xcdatamodeld in Sources */,
-				DC646AF92088924700421F97 /* Session+CoreDataClass.swift in Sources */,
-				DC646AFC2088924700421F97 /* CharacteristicName+CoreDataProperties.swift in Sources */,
 				DCB7BBF3203A5688001F1E9F /* CollectingDataVC.swift in Sources */,
+				DC6A3F71208F853800B12C60 /* Sensor+CoreDataClass.swift in Sources */,
 				DCE4CC67206E1D750043180A /* SessionIDCell.swift in Sources */,
+				DC6A3F74208F853800B12C60 /* CharacteristicName+CoreDataProperties.swift in Sources */,
 				DCB7BBF1203A5688001F1E9F /* AppDelegate.swift in Sources */,
+				DC6A3F6D208F853800B12C60 /* SensorData+CoreDataClass.swift in Sources */,
 				DCA52D7F2046A7F00011AA74 /* RoundButton.swift in Sources */,
+				DC6A3F6F208F853800B12C60 /* Session+CoreDataClass.swift in Sources */,
 				DC82AAC1208EDAFE00A30939 /* SessionContainer.swift in Sources */,
-				DC646AF82088924700421F97 /* Characteristic+CoreDataProperties.swift in Sources */,
+				DC6A3F6C208F853800B12C60 /* Characteristic+CoreDataProperties.swift in Sources */,
 				DCA2827720892D7B0078CC3E /* SessionType.swift in Sources */,
-				DC646AF52088924700421F97 /* SensorData+CoreDataClass.swift in Sources */,
+				DC6A3F72208F853800B12C60 /* Sensor+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

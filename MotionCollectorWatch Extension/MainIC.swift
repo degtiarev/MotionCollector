@@ -164,7 +164,7 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
             
             if deviceMotion != nil {
                 
-                let currenTime = self.returnCurrentTime()
+                // let currenTime = self.returnCurrentTime()
                 let GyroX = deviceMotion!.rotationRate.x
                 let GyroY = deviceMotion!.rotationRate.y
                 let GyroZ = deviceMotion!.rotationRate.z

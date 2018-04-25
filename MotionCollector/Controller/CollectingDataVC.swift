@@ -59,6 +59,7 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
     var sensorWatchOutputs = [SensorOutput]()
     var characteristicsNames  = [CharacteristicName]()
     var sessionType: SessionType = SessionType.OnlyPhone
+    var sensors = [Sensor]()
     
     
     // Record stopwatch
@@ -85,6 +86,7 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
         
         findLastSessionId()
         addNamesOfCharacteristics()
+        addSensorIDs()
         
         status = .waiting
         
@@ -275,6 +277,7 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
             sensorData.addToToCharacteristic(characteristicGyro)
             sensorData.addToToCharacteristic(characteristicAcc)
             sensorData.addToToCharacteristic(characteristicMag)
+            sensorData.toSensor = sensors[0]
             
             self.currentSession?.addToToSensorData(sensorData)
             
@@ -520,85 +523,45 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
         
     }
     
+    func addSensorIDs(){
+        // Create Fetch Request
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Sensor")
+        
+        // Add Sort Descriptor
+        let sortDescriptor = NSSortDescriptor(key: "id", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        do {
+            let records = try context.fetch(fetchRequest) as! [Sensor]
+            
+            if records.count != 2 {
+                let sensor1 = Sensor(context: context)
+                sensor1.id = 1
+                let sensor2 = Sensor(context: context)
+                sensor2.id = 2
+                
+                ad.saveContext()
+            }
+            
+        } catch {
+            print(error)
+        }
+        
+        // Populate local array
+        let fetchRequestForLocalSensors: NSFetchRequest<Sensor> = Sensor.fetchRequest()
+        let sortDescriptorForLocalSensors = NSSortDescriptor(key: "id", ascending: true)
+        fetchRequestForLocalSensors.sortDescriptors = [sortDescriptorForLocalSensors]
+        do {
+            self.sensors = try context.fetch(fetchRequestForLocalSensors)
+        }   catch   {
+            print(error)
+        }
+        
+    }
     
     
     
     // MARK - Work with WCSessionDelegate
-    
-    // for receiving sessions
-    func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
-        DispatchQueue.main.async {
-            
-            if let frequency = userInfo["Frequency"] as? Int {
-                print("\(frequency)")
-            }
-            
-            if let outputs = userInfo["Data"] as? [SensorOutput] {
-                self.sensorWatchOutputs = outputs
-                
-                if (self.sessionType == SessionType.PhoneAndWatch) {
-                    
-                    for sensorOutput in self.sensorWatchOutputs {
-                        
-                        let characteristicGyro = Characteristic (context:context)
-                        characteristicGyro.x = sensorOutput.gyroX!
-                        characteristicGyro.y = sensorOutput.gyroY!
-                        characteristicGyro.z = sensorOutput.gyroZ!
-                        characteristicGyro.toCharacteristicName = self.characteristicsNames[1]
-                        
-                        let characteristicAcc = Characteristic (context:context)
-                        characteristicAcc.x = sensorOutput.accX!
-                        characteristicAcc.y = sensorOutput.accY!
-                        characteristicAcc.z = sensorOutput.accZ!
-                        characteristicAcc.toCharacteristicName = self.characteristicsNames[0]
-                        
-                        
-                        let sensorData = SensorData(context: context)
-                        sensorData.timeStamp = sensorOutput.timeStamp as NSDate?
-                        sensorData.addToToCharacteristic(characteristicGyro)
-                        sensorData.addToToCharacteristic(characteristicAcc)
-                        
-                        self.currentSession?.addToToSensorData(sensorData)
-                    }
-                    self.sensorWatchOutputs.removeAll()
-                    
-                    ad.saveContext()
-                    self.currentSession = nil
-                }
-            }
-        }
-    }
-    
-    // for receiving signals to start recording
-    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
-        DispatchQueue.main.async {
-            
-            if let isAlsoRun = message["Running"] as? Bool {
-                
-                if (isAlsoRun) {
-                    self.StartButtonpressed((Any).self)
-                    self.sessionType = SessionType.PhoneAndWatch
-                } else {
-                    self.stopButtonPressed((Any).self)
-                    self.sessionType = SessionType.OnlyPhone
-                }
-                
-                // send back reply
-                replyHandler(["response": "Starting collecting data..."])
-            }
-            
-        }
-    }
-    
-    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        DispatchQueue.main.sync {
-            if activationState == .activated {
-                if session.isWatchAppInstalled {
-                    print ("Watch app is installed")
-                }
-            }
-        }
-    }
     
     // for receiving sessions
     func session(_ session: WCSession, didReceive file: WCSessionFile) {
@@ -627,6 +590,42 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
             do {
                 if let sessionContainerCopy = try unarchiver.decodeTopLevelDecodable(SessionContainer.self, forKey: NSKeyedArchiveRootObjectKey) {
                     print("deserialized sensor output: \(String(describing: sessionContainerCopy.currentFrequency))")
+                    
+                    // work with received data
+                    
+                    sensorWatchOutputs = sessionContainerCopy.sensorOutputs
+                    if (self.sessionType == SessionType.PhoneAndWatch) {
+                        
+                        for sensorOutput in self.sensorWatchOutputs {
+                            
+                            let characteristicGyro = Characteristic (context:context)
+                            characteristicGyro.x = sensorOutput.gyroX!
+                            characteristicGyro.y = sensorOutput.gyroY!
+                            characteristicGyro.z = sensorOutput.gyroZ!
+                            characteristicGyro.toCharacteristicName = self.characteristicsNames[1]
+                            
+                            let characteristicAcc = Characteristic (context:context)
+                            characteristicAcc.x = sensorOutput.accX!
+                            characteristicAcc.y = sensorOutput.accY!
+                            characteristicAcc.z = sensorOutput.accZ!
+                            characteristicAcc.toCharacteristicName = self.characteristicsNames[0]
+                            
+                            
+                            let sensorData = SensorData(context: context)
+                            sensorData.timeStamp = sensorOutput.timeStamp as NSDate?
+                            sensorData.toSensor = sensors[1]
+                            sensorData.addToToCharacteristic(characteristicGyro)
+                            sensorData.addToToCharacteristic(characteristicAcc)
+                            
+                            self.currentSession?.addToToSensorData(sensorData)
+                        }
+                        self.sensorWatchOutputs.removeAll()
+                        
+                        ad.saveContext()
+                        self.currentSession = nil
+                        self.sessionType = SessionType.OnlyPhone
+                    }
+                    
                 }
             } catch {
                 print("unarchiving failure: \(error)")
@@ -646,12 +645,40 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
         return paths[0]
     }
     
+    // for receiving signals to start recording
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
+        DispatchQueue.main.async {
+            
+            if let isAlsoRun = message["Running"] as? Bool {
+                
+                if (isAlsoRun) {
+                    self.sessionType = SessionType.PhoneAndWatch
+                    self.StartButtonpressed((Any).self)
+                } else {
+                    self.stopButtonPressed((Any).self)
+                }
+                
+                // send back reply
+                replyHandler(["response": "Starting collecting data..."])
+            }
+            
+        }
+    }
+    
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        DispatchQueue.main.sync {
+            if activationState == .activated {
+                if session.isWatchAppInstalled {
+                    print ("Watch app is installed")
+                }
+            }
+        }
+    }
+    
     func sessionDidBecomeInactive(_ session: WCSession) {
         
     }
     
     func sessionDidDeactivate(_ session: WCSession) {
     }
-    
-    
 }
