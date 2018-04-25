@@ -660,6 +660,11 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
                     self.sessionType = SessionType.PhoneAndWatch
                     self.StartButtonpressed((Any).self)
                     
+                    if let recID = message["RecordID"] as? Int {
+                        self.currentSession?.recordID = Int32(recID)
+                        self.settingsTableVC?.recordID.text = "\(recID)"
+                    }
+                    
                     // send back reply
                     replyHandler(["response": "Starting collecting data..."])
                     

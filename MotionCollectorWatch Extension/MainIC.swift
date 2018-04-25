@@ -56,8 +56,6 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
     var recordTime: String = ""
     var sensorOutputs = [SensorOutput]()
     var isRecordDataFromPhone = false
-    
-    // Variables
     var recordID: Int = 0
     var currentSessionDate: NSDate = NSDate()
     
@@ -123,7 +121,7 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
         if (isRecordDataFromPhone) {
             let WCsession = WCSession.default
             if WCsession.isReachable {
-                let data = ["Running": true]
+                let data = ["Running": true, "RecordID": recordID] as [String : Any]
                 
                 WCsession.sendMessage(data, replyHandler: { (response) in
                     DispatchQueue.main.async {
@@ -313,6 +311,10 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
     
     @IBAction func recordDataFromPhoneSwitchChanged(_ value: Bool) {
         isRecordDataFromPhone = value
+    }
+    
+    @IBAction func recNumberPickerChanged(_ value: Int) {
+        recordID = value
     }
     
     

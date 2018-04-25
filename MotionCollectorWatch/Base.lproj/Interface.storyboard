@@ -27,7 +27,11 @@
                         <group width="1" height="0.25" alignment="left" id="zch-V6-net">
                             <items>
                                 <label width="0.5" height="1" alignment="left" text="Rec num" textAlignment="left" id="Zk2-7b-mu2"/>
-                                <picker width="0.5" height="1" alignment="left" focusStyle="stack" id="lJN-9t-7cw"/>
+                                <picker width="0.5" height="1" alignment="left" focusStyle="stack" id="lJN-9t-7cw">
+                                    <connections>
+                                        <action selector="recNumberPickerChanged:" destination="AgC-eL-Hgc" id="e3W-Hr-3H8"/>
+                                    </connections>
+                                </picker>
                             </items>
                         </group>
                         <group width="1" height="0.29999999999999999" alignment="left" id="2YU-4i-TBW">
