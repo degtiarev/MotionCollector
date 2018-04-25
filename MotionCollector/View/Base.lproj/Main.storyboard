@@ -178,7 +178,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zPJ-Sa-nz2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1567" y="913"/>
+            <point key="canvasLocation" x="1890" y="913"/>
         </scene>
         <!--Collecting data-->
         <scene sceneID="C8A-Sg-tVm">
@@ -277,7 +277,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D5C-WJ-gws" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1567" y="223"/>
+            <point key="canvasLocation" x="1890" y="223"/>
         </scene>
         <!--Settings TableVC-->
         <scene sceneID="4PG-qt-ouz">
@@ -440,7 +440,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZBp-ZC-oRP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2047" y="54"/>
+            <point key="canvasLocation" x="2678" y="-24"/>
         </scene>
         <!--RecordIDVC-->
         <scene sceneID="JiW-EX-sll">
@@ -488,7 +488,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zre-Xy-7eq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2047" y="654"/>
+            <point key="canvasLocation" x="2678" y="506"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Act-GJ-ko4">
@@ -506,7 +506,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eX8-25-V1y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="628" y="537"/>
+            <point key="canvasLocation" x="274" y="507"/>
         </scene>
         <!--Collecting data-->
         <scene sceneID="Mbi-Bf-RJt">

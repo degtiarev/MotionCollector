@@ -26,10 +26,12 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
             
             switch(newStatus) {
             case .waiting:
+                print ("Stop recording on Apple Watch")
                 waiting()
                 break
                 
             case .recording:
+                print ("Start recording on Apple Watch")
                 recording()
                 break
             }
@@ -241,6 +243,8 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
     // MARK - Action controlls
     
     @IBAction func startButtonPressed() {
+        // check status
+        if status == Status.recording { return }
         
         status = .recording
         
@@ -249,6 +253,9 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
     }
     
     @IBAction func stopButtonPressed() {
+        
+        // check status
+        if status == Status.waiting { return }
         
         // Pack up data into container
         let sessionContainer = SessionContainer()

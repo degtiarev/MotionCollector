@@ -26,10 +26,12 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
             
             switch(newStatus) {
             case .waiting:
+                print ("Stop recording on iPhone")
                 waiting()
                 break
                 
             case .recording:
+                print ("Start recording on iPhone")
                 recording()
                 break
             }
@@ -84,7 +86,6 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
         
         //fillTestData()
         
-        findLastSessionId()
         addNamesOfCharacteristics()
         addSensorIDs()
         
@@ -99,6 +100,9 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        findLastSessionId()
+    }
     
     
     // MARK - connecting with delegates
@@ -478,6 +482,7 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
             if record.count == 1 {
                 let lastSession = record.first! as Session
                 nextSessionid = Int(lastSession.id) + 1
+                settingsTableVC?.currentRecordNumberLabel.text = "\(nextSessionid)"
             }
             
         } catch {
@@ -566,7 +571,7 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
     // for receiving sessions
     func session(_ session: WCSession, didReceive file: WCSessionFile) {
         
-        print ("File received!")
+        print ("File with data received on iPhone!")
         
         let fm = FileManager.default
         let destURL = getDocumentsDirectory().appendingPathComponent("saved_file")
@@ -589,7 +594,7 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
             let unarchiver = NSKeyedUnarchiver(forReadingWith: data)
             do {
                 if let sessionContainerCopy = try unarchiver.decodeTopLevelDecodable(SessionContainer.self, forKey: NSKeyedArchiveRootObjectKey) {
-                    print("deserialized sensor output: \(String(describing: sessionContainerCopy.currentFrequency))")
+                    // print("deserialized sensor output: \(String(describing: sessionContainerCopy.currentFrequency))")
                     
                     // work with received data
                     
@@ -654,14 +659,18 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
                 if (isAlsoRun) {
                     self.sessionType = SessionType.PhoneAndWatch
                     self.StartButtonpressed((Any).self)
+                    
+                    // send back reply
+                    replyHandler(["response": "Starting collecting data..."])
+                    
                 } else {
                     self.stopButtonPressed((Any).self)
+                    
+                    // send back reply
+                    replyHandler(["response": "Stopping collecting data..."])
                 }
                 
-                // send back reply
-                replyHandler(["response": "Starting collecting data..."])
             }
-            
         }
     }
     
