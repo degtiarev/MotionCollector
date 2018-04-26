@@ -36,7 +36,7 @@
                         </group>
                         <group width="1" height="0.29999999999999999" alignment="left" id="2YU-4i-TBW">
                             <items>
-                                <switch width="1" alignment="left" title="Record data from phone" id="jfE-cI-0CH">
+                                <switch width="1" alignment="left" value="YES" title="Record data from phone" id="jfE-cI-0CH">
                                     <connections>
                                         <action selector="recordDataFromPhoneSwitchChanged:" destination="AgC-eL-Hgc" id="RLU-Ri-wCM"/>
                                     </connections>

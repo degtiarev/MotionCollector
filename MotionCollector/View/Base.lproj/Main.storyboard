@@ -173,6 +173,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="deleteButton" destination="NCo-fC-XI9" id="NwD-95-VyS"/>
                         <outlet property="tableView" destination="kNY-Hc-elL" id="clU-MY-Nli"/>
                     </connections>
                 </viewController>

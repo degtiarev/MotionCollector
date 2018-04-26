@@ -12,6 +12,8 @@ import CoreData
 class ExportDataVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var deleteButton: UIBarButtonItem!
+    
     
     var controller: NSFetchedResultsController<Session>!
     
@@ -134,26 +136,54 @@ class ExportDataVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     @IBAction func deletePressed(_ sender: UIBarButtonItem) {
         
+        deleteButton.isEnabled = false
         let entities = ["Session", "Characteristic", "SensorData"]
         
+        //        for entity in entities{
+        //            // Create Fetch Request
+        //            let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
+        //            // Create Batch Delete Request
+        //            let request = NSBatchDeleteRequest(fetchRequest: fetch)
+        //
+        //            do {
+        //
+        //                try context.execute(request)
+        //
+        //            } catch {
+        //
+        //                let error = error as NSError
+        //                print("\(error)")
+        //            }
+        //
+        //        }
+        
         for entity in entities{
-            let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
-            let request = NSBatchDeleteRequest(fetchRequest: fetch)
+            // Initialize Fetch Request
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
+            
+            // Configure Fetch Request
+            fetchRequest.includesPropertyValues = false
             
             do {
+                let items = try context.fetch(fetchRequest) as! [NSManagedObject]
                 
-                _ = try context.execute(request)
+                for item in items {
+                    context.delete(item)
+                }
+                
+                // Save Changes
+                try context.save()
                 
             } catch {
-                
-                let error = error as NSError
-                print("\(error)")
+                // Error Handling
+                // ...
             }
-            
         }
         
         attemptFetch()
         tableView.reloadData()
+        deleteButton.isEnabled = true
+        print ("All data deleted!")
     }
     
     

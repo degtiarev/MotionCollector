@@ -26,12 +26,10 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
             
             switch(newStatus) {
             case .waiting:
-                print ("Stop recording on Apple Watch")
                 waiting()
                 break
                 
             case .recording:
-                print ("Start recording on Apple Watch")
                 recording()
                 break
             }
@@ -55,7 +53,7 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
     var nextSessionid: Int = 0
     var recordTime: String = ""
     var sensorOutputs = [SensorOutput]()
-    var isRecordDataFromPhone = false
+    var isRecordDataFromPhone = true
     var recordID: Int = 0
     var currentSessionDate: NSDate = NSDate()
     
@@ -193,7 +191,17 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
         }
     }
     
-    func stopGettingData() {
+    func stopGettingData(handler: @escaping(_ finishedGettingData: Bool) -> ()) {
+        
+        // If we have already stopped the workout, then do nothing.
+        if (session == nil) {
+            return
+        }
+        
+        // Stop the device motion updates and workout session.
+        motion.stopDeviceMotionUpdates()
+        healthStore.end(session!)
+        print("Ended health session")
         
         // send info to start data collecting on phone
         if (isRecordDataFromPhone) {
@@ -209,17 +217,10 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
             }
         }
         
-        // If we have already stopped the workout, then do nothing.
-        if (session == nil) {
-            return
-        }
-        
-        // Stop the device motion updates and workout session.
-        motion.stopDeviceMotionUpdates()
-        healthStore.end(session!)
-        
         // Clear the workout session.
         session = nil
+        
+        handler(true)
     }
     
     
@@ -244,6 +245,7 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
         // check status
         if status == Status.recording { return }
         
+        startGettingData()
         status = .recording
         
         // Start session recording
@@ -255,52 +257,62 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
         // check status
         if status == Status.waiting { return }
         
-        // Pack up data into container
-        let sessionContainer = SessionContainer()
-        sessionContainer.nextSessionid = nextSessionid
-        sessionContainer.currentSessionDate = currentSessionDate as Date
-        sessionContainer.currentFrequency = currentFrequency
-        sessionContainer.recordID = recordID
-        sessionContainer.duration = recordTime
-        sessionContainer.sensorOutputs = sensorOutputs
+        timer.stop()
         
-        // Archiving data
-        let mutableData = NSMutableData()
-        let archiver = NSKeyedArchiver(forWritingWith: mutableData)
-        try! archiver.encodeEncodable(sessionContainer, forKey: NSKeyedArchiveRootObjectKey)
-        archiver.finishEncoding()
-        
-        
-        // Saving data to file
-        let sourceURL = getDocumentDirectory().appendingPathComponent("saveFile")
-        mutableData.write(to: sourceURL, atomically: true)
-        
-        
-        // Sending file
-        let session = WCSession.default
-        if session.activationState == .activated {
+        stopGettingData { (finishedGettingData) in
             
-            // create a URL from where the file is/will be saved
-            let fm = FileManager.default
-            let sourceURL = getDocumentDirectory().appendingPathComponent("saveFile")
+            // Pack up data into container
+            let sessionContainer = SessionContainer()
+            sessionContainer.nextSessionid = self.nextSessionid
+            sessionContainer.currentSessionDate = self.currentSessionDate as Date
+            sessionContainer.currentFrequency = self.currentFrequency
+            sessionContainer.recordID = self.recordID
+            sessionContainer.duration = self.recordTime
+            sessionContainer.sensorOutputs = self.sensorOutputs
             
-            if !fm.fileExists(atPath: sourceURL.path) {
+            // Archiving data
+            let mutableData = NSMutableData()
+            let archiver = NSKeyedArchiver(forWritingWith: mutableData)
+            try! archiver.encodeEncodable(sessionContainer, forKey: NSKeyedArchiveRootObjectKey)
+            archiver.finishEncoding()
+            
+            
+            // Saving data to file
+            let sourceURL = self.getDocumentDirectory().appendingPathComponent("saveFile")
+            mutableData.write(to: sourceURL, atomically: true)
+            print ("Saved file")
+            
+            
+            // Sending file
+            let session = WCSession.default
+            if session.activationState == .activated {
                 
-                // the file doesn't exist - create it now
-                try? "Hello from phone!".write(to: sourceURL, atomically: true, encoding: String.Encoding.utf8)
+                // create a URL from where the file is/will be saved
+                let fm = FileManager.default
+                let sourceURL = self.getDocumentDirectory().appendingPathComponent("saveFile")
                 
+                if !fm.fileExists(atPath: sourceURL.path) {
+                    
+                    // the file doesn't exist - create it now
+                    try? "Hello from Apple Watch!".write(to: sourceURL, atomically: true, encoding: String.Encoding.utf8)
+                    
+                }
+                
+                print ("Starting sending file")
+                // the file exists now; send it across the session
+                session.transferFile(sourceURL, metadata: nil)
+                print ("File sent")
             }
             
-            // the file exists now; send it across the session
-            session.transferFile(sourceURL, metadata: nil)
+            
+            // Preparing watch for new session
+            self.sensorOutputs.removeAll()
+            self.nextSessionid += 1
+            
             
         }
         
         
-        // Preparing watch for new session
-        sensorOutputs.removeAll()
-        nextSessionid += 1
-        status = .waiting
     }
     
     func getDocumentDirectory() -> URL {
@@ -323,10 +335,8 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
     
     func waiting() {
         recNumberPicker.setEnabled(true)
-        timer.stop()
         timer.setDate(Date(timeIntervalSinceNow: 0.0))
         recordDataFromPhoneSwitch.setEnabled(true)
-        stopGettingData()
     }
     
     func recording() {
@@ -334,7 +344,6 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
         timer.setDate(Date(timeIntervalSinceNow: 0.0))
         timer.start()
         recordDataFromPhoneSwitch.setEnabled(false)
-        startGettingData()
     }
     
     
@@ -342,12 +351,15 @@ class MainIC: WKInterfaceController, WCSessionDelegate {
     // MARK - Work with WCSessionDelegate
     
     func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
-        //        DispatchQueue.main.async {
-        //
-        //            if let text = userInfo["text"] as? String {
-        //                print(text)
-        //            }
-        //        }
+        DispatchQueue.main.async {
+            
+            if let isFinishedHanflingFile = userInfo["isFinishedHandling"] as? Bool {
+                if isFinishedHanflingFile {
+                    print("Finished handling file")
+                    self.status = .waiting
+                }
+            }
+        }
     }
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {

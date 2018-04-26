@@ -58,7 +58,6 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
     var nextSessionid: Int = 0
     var recordTime: String = ""
     var sensorOutputs = [SensorOutput]()
-    var sensorWatchOutputs = [SensorOutput]()
     var characteristicsNames  = [CharacteristicName]()
     var sessionType: SessionType = SessionType.OnlyPhone
     var sensors = [Sensor]()
@@ -85,10 +84,6 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
         super.viewDidLoad()
         
         //fillTestData()
-        
-        addNamesOfCharacteristics()
-        addSensorIDs()
-        
         status = .waiting
         
         // Prepare for session
@@ -102,6 +97,8 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
     
     override func viewDidAppear(_ animated: Bool) {
         findLastSessionId()
+        addNamesOfCharacteristics()
+        addSensorIDs()
     }
     
     
@@ -147,7 +144,7 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
                 // Get the motion data.
                 if let dataAcc = self.motion.accelerometerData, let dataMag = self.motion.magnetometerData, let dataGyro = self.motion.gyroData {
                     
-                    //let currenTime = self.returnCurrentTime()
+                    // let currenTime = self.returnCurrentTime()
                     
                     let GyroX = dataGyro.rotationRate.x
                     let GyroY = dataGyro.rotationRate.y
@@ -162,9 +159,9 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
                     let MagZ = dataMag.magneticField.z
                     
                     
-                    //print ( "Gyro: \(currenTime) \(GyroX), \(GyroY), \(GyroZ)")
-                    //print ( "Acc : \(currenTime) \(AccX), \(AccY), \(AccZ)")
-                    //print ( "Mag : \(currenTime) \(MagX), \(MagY), \(MagZ)")
+                    // print ( "Gyro: \(currenTime) \(GyroX), \(GyroY), \(GyroZ)")
+                    // print ( "Acc : \(currenTime) \(AccX), \(AccY), \(AccZ)")
+                    // print ( "Mag : \(currenTime) \(MagX), \(MagY), \(MagZ)")
                     
                     
                     let sensorOutput = SensorOutput()
@@ -287,13 +284,14 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
             
         }
         
-        sensorOutputs.removeAll()
         
         if sessionType == SessionType.OnlyPhone {
             ad.saveContext()
             currentSession = nil
+            sensorOutputs.removeAll()
         }
         
+        print ("iPhone's motion data handled")
         nextSessionid += 1
         stopGettingData()
         status = .waiting
@@ -484,6 +482,11 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
                 nextSessionid = Int(lastSession.id) + 1
                 settingsTableVC?.currentRecordNumberLabel.text = "\(nextSessionid)"
             }
+                
+            else {
+                nextSessionid = 0
+                settingsTableVC?.currentRecordNumberLabel.text = "\(nextSessionid)"
+            }
             
         } catch {
             print(error)
@@ -571,7 +574,10 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
     // for receiving sessions
     func session(_ session: WCSession, didReceive file: WCSessionFile) {
         
+        if sessionType == SessionType.OnlyPhone { return }
+        
         print ("File with data received on iPhone!")
+        print ("SessionType: \(sessionType)")
         
         let fm = FileManager.default
         let destURL = getDocumentsDirectory().appendingPathComponent("saved_file")
@@ -596,12 +602,19 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
                 if let sessionContainerCopy = try unarchiver.decodeTopLevelDecodable(SessionContainer.self, forKey: NSKeyedArchiveRootObjectKey) {
                     // print("deserialized sensor output: \(String(describing: sessionContainerCopy.currentFrequency))")
                     
-                    // work with received data
+                    // print file size
+                    let bcf = ByteCountFormatter()
+                    bcf.allowedUnits = [.useMB] // optional: restricts the units to MB only
+                    bcf.countStyle = .file
+                    let string = bcf.string(fromByteCount: Int64(data.count))
+                    print ("File size: \(string)")
                     
-                    sensorWatchOutputs = sessionContainerCopy.sensorOutputs
+                    // work with received data
+                    print ("Start handling file...")
+                    // sensorWatchOutputs = sessionContainerCopy.sensorOutputs
                     if (self.sessionType == SessionType.PhoneAndWatch) {
                         
-                        for sensorOutput in self.sensorWatchOutputs {
+                        for sensorOutput in sessionContainerCopy.sensorOutputs {
                             
                             let characteristicGyro = Characteristic (context:context)
                             characteristicGyro.x = sensorOutput.gyroX!
@@ -624,17 +637,32 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
                             
                             self.currentSession?.addToToSensorData(sensorData)
                         }
-                        self.sensorWatchOutputs.removeAll()
                         
+                        print("Now starting saving to Data Core")
                         ad.saveContext()
-                        self.currentSession = nil
+                        print("After String saving")
                         self.sessionType = SessionType.OnlyPhone
+                        self.sensorOutputs.removeAll()
+                        // self.sensorWatchOutputs.removeAll()
+                        self.currentSession = nil
                     }
                     
                 }
             } catch {
                 print("unarchiving failure: \(error)")
             }
+            
+            print ("Finished saving into Data Core")
+            
+            
+            let WCsession = WCSession.default
+            if WCsession.activationState == .activated {
+                let data = ["isFinishedHandling": true]
+                WCsession.transferUserInfo(data)
+                
+                print("Sent callback to Watch")
+            }
+            
         }
             
         catch {
@@ -657,13 +685,19 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
             if let isAlsoRun = message["Running"] as? Bool {
                 
                 if (isAlsoRun) {
-                    self.sessionType = SessionType.PhoneAndWatch
-                    self.StartButtonpressed((Any).self)
                     
                     if let recID = message["RecordID"] as? Int {
-                        self.currentSession?.recordID = Int32(recID)
+                        self.recordID = recID
                         self.settingsTableVC?.recordID.text = "\(recID)"
                     }
+                    
+                    // updating frequency in all places
+                    self.currentFrequency = 60
+                    self.settingsTableVC?.periodSlider.setValue(60.0, animated: true)
+                    self.settingsTableVC?.currentPeriodLabel.text = "60"
+                    
+                    self.sessionType = SessionType.PhoneAndWatch
+                    self.StartButtonpressed((Any).self)
                     
                     // send back reply
                     replyHandler(["response": "Starting collecting data..."])
