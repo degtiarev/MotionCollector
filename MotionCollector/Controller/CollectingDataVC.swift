@@ -602,51 +602,55 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
                 if let sessionContainerCopy = try unarchiver.decodeTopLevelDecodable(SessionContainer.self, forKey: NSKeyedArchiveRootObjectKey) {
                     // print("deserialized sensor output: \(String(describing: sessionContainerCopy.currentFrequency))")
                     
-                    // print file size
-                    let bcf = ByteCountFormatter()
-                    bcf.allowedUnits = [.useMB] // optional: restricts the units to MB only
-                    bcf.countStyle = .file
-                    let string = bcf.string(fromByteCount: Int64(data.count))
-                    print ("File size: \(string)")
                     
-                    // work with received data
-                    print ("Start handling file...")
-                    // sensorWatchOutputs = sessionContainerCopy.sensorOutputs
-                    if (self.sessionType == SessionType.PhoneAndWatch) {
+                    DispatchQueue.main.async {
+                        print("We are in main thread")
                         
-                        for sensorOutput in sessionContainerCopy.sensorOutputs {
+                        // print file size
+                        let bcf = ByteCountFormatter()
+                        bcf.allowedUnits = [.useMB] // optional: restricts the units to MB only
+                        bcf.countStyle = .file
+                        let string = bcf.string(fromByteCount: Int64(data.count))
+                        print ("File size: \(string)")
+                        
+                        // work with received data
+                        print ("Start handling file...")
+                        // sensorWatchOutputs = sessionContainerCopy.sensorOutputs
+                        if (self.sessionType == SessionType.PhoneAndWatch) {
                             
-                            let characteristicGyro = Characteristic (context:context)
-                            characteristicGyro.x = sensorOutput.gyroX!
-                            characteristicGyro.y = sensorOutput.gyroY!
-                            characteristicGyro.z = sensorOutput.gyroZ!
-                            characteristicGyro.toCharacteristicName = self.characteristicsNames[1]
+                            for sensorOutput in sessionContainerCopy.sensorOutputs {
+                                
+                                let characteristicGyro = Characteristic (context:context)
+                                characteristicGyro.x = sensorOutput.gyroX!
+                                characteristicGyro.y = sensorOutput.gyroY!
+                                characteristicGyro.z = sensorOutput.gyroZ!
+                                characteristicGyro.toCharacteristicName = self.characteristicsNames[1]
+                                
+                                let characteristicAcc = Characteristic (context:context)
+                                characteristicAcc.x = sensorOutput.accX!
+                                characteristicAcc.y = sensorOutput.accY!
+                                characteristicAcc.z = sensorOutput.accZ!
+                                characteristicAcc.toCharacteristicName = self.characteristicsNames[0]
+                                
+                                
+                                let sensorData = SensorData(context: context)
+                                sensorData.timeStamp = sensorOutput.timeStamp as NSDate?
+                                sensorData.toSensor = self.sensors[1]
+                                sensorData.addToToCharacteristic(characteristicGyro)
+                                sensorData.addToToCharacteristic(characteristicAcc)
+                                
+                                self.currentSession?.addToToSensorData(sensorData)
+                            }
                             
-                            let characteristicAcc = Characteristic (context:context)
-                            characteristicAcc.x = sensorOutput.accX!
-                            characteristicAcc.y = sensorOutput.accY!
-                            characteristicAcc.z = sensorOutput.accZ!
-                            characteristicAcc.toCharacteristicName = self.characteristicsNames[0]
-                            
-                            
-                            let sensorData = SensorData(context: context)
-                            sensorData.timeStamp = sensorOutput.timeStamp as NSDate?
-                            sensorData.toSensor = sensors[1]
-                            sensorData.addToToCharacteristic(characteristicGyro)
-                            sensorData.addToToCharacteristic(characteristicAcc)
-                            
-                            self.currentSession?.addToToSensorData(sensorData)
+                            print("Now starting saving to Data Core")
+                            ad.saveContext()
+                            print("After String saving")
+                            self.sessionType = SessionType.OnlyPhone
+                            self.sensorOutputs.removeAll()
+                            // self.sensorWatchOutputs.removeAll()
+                            self.currentSession = nil
                         }
-                        
-                        print("Now starting saving to Data Core")
-                        ad.saveContext()
-                        print("After String saving")
-                        self.sessionType = SessionType.OnlyPhone
-                        self.sensorOutputs.removeAll()
-                        // self.sensorWatchOutputs.removeAll()
-                        self.currentSession = nil
                     }
-                    
                 }
             } catch {
                 print("unarchiving failure: \(error)")
