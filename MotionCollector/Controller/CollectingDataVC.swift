@@ -159,9 +159,9 @@ class CollectingDataVC: UIViewController, WCSessionDelegate, SettingsTableVCDele
                     let MagZ = dataMag.magneticField.z
                     
                     
-                    // print ( "Gyro: \(currenTime) \(GyroX), \(GyroY), \(GyroZ)")
-                    // print ( "Acc : \(currenTime) \(AccX), \(AccY), \(AccZ)")
-                    // print ( "Mag : \(currenTime) \(MagX), \(MagY), \(MagZ)")
+                     print ( "Gyro: \(GyroX), \(GyroY), \(GyroZ)")
+                     print ( "Acc : \(AccX), \(AccY), \(AccZ)")
+                     print ( "Mag : \(MagX), \(MagY), \(MagZ)")
                     
                     
                     let sensorOutput = SensorOutput()

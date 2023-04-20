@@ -26,7 +26,7 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>WKCompanionAppBundleIdentifier</key>
-	<string>delexa1.MotionCollector</string>
+	<string>com.sapplym.metamotionssample</string>
 	<key>WKWatchKitApp</key>
 	<true/>
 </dict>
